@@ -1,5 +1,83 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Tooltip"
+description: "Tooltips provide lightweight contextual assistance or labels. They appear temporarily on hover or focus and should remain subtle, fast, and non-intrusive."
 ---
 
+### 1. Motion States
+
+#### **Entrance (On Hover or Focus)**
+
+- **Purpose**: Gently reveal additional context without breaking the user’s flow.
+- **Pattern**:
+  - **Fade in** from 0% to 100% opacity
+  - **Slight upward motion** (e.g., translateY: 4–6px → 0)
+- **Duration**: `duration-normal` (250ms)
+- **Easing**: `ease-out-quad`
+- **Trigger**: User
+  - **Hover** on desktop
+  - **Focus** on mobile or keyboard navigation
+- **Notes**:
+  - Motion must feel quick and seamless
+  - Position motion is subtle—avoid bouncing or scaling
+
+---
+
+#### **Exit (On Hover Out or Blur)**
+
+- **Purpose**: Cleanly remove the tooltip without jarring the user.
+- **Pattern**:
+  - **Fade out** from 100% to 0% opacity
+  - **Slight downward motion** (e.g. translateY: 0 → 4–6px)
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-in-quad`
+- **Trigger**: User unhovers or an element loses focus
+- **Notes**:
+  - Keep exit motion fast, especially if the tooltip appears frequently.
+
+---
+
+### 2. Interaction Semantics
+
+| **Trigger Type** | **Pattern**  | **Use Case**                     |
+| :--------------- | :----------- | :------------------------------- |
+| Hover            | Reveal Hover | Desktop mouse input              |
+| Focus            | Reveal Focus | Mobile or keyboard accessibility |
+
+- Tooltip motion is classified under **reveal patterns**
+- Must remain **non-blocking**, **non-modal**, and dismissible on blur
+
+---
+
+### 3. Sequencing
+
+- **Single tooltip**: No sequencing required
+- **Bulk tooltips** (e.g., grid labels, tag clouds):
+  - Use **staggered sequencing** for the initial reveal
+  - Delay per tooltip: `duration-xshort` (75ms)
+  - Animate in directional flow (e.g., left → right, top → bottom)
+
+---
+
+### 4. Easing Logic
+
+| **Motion Element**    | **Easing Token** | **Reason**                                   |
+| :-------------------- | :--------------- | :------------------------------------------- |
+| Tooltip Entrance      | `ease-out-quad`  | Feels fast, responsive, non-blocking         |
+| Tooltip Exit          | `ease-in-quad`   | Closes neatly and with finality              |
+| Fade only (no motion) | `ease-none`      | Used in reduced motion or low-emphasis cases |
+
+---
+
+### 5. Accessibility Considerations
+
+- **Focus Accessibility**:
+  - Ensure tooltips appear on keyboard focus (`:focus-visible`)
+  - Do not rely on hover-only interactions
+- **Reduced Motion**:
+  - Honor `prefers-reduced-motion`
+    - Disable translation
+    - Use **opacity fade only**
+- Tooltip must not trap focus or interfere with screen reader flow
+- Add `role="tooltip"` and ensure correct `aria-describedby` relationship with the triggering element
+
+---
