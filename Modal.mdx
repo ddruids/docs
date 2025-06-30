@@ -1,5 +1,85 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Modal"
+description: "This spec outlines motion behavior for modal components across platforms. It covers entry/exit states, backdrop behavior, responsive adaptations, and accessibility principles."
 ---
 
+### 1. Motion States
+
+#### 🟢 **Entrance (On Open)**
+
+- **Purpose**: Visually introduce a system-level or user-initiated overlay while maintaining focus.
+- **Pattern**:
+  - Scale up from 95% to 100%
+  - Fade in from 0% to 100%
+  - Translate upward by 8–12px
+- **Duration**: `duration-slow` (400ms)
+- **Easing**: `ease-in-out-quart`
+- **Trigger**: System or user
+- **Notes**:
+  - Use **staggered sequencing** for modal children: title → subtitle → inputs → buttons.
+  - Entrance should feel deliberate and calm to reflect system authority.
+
+#### 🔴 **Exit (On Dismiss)**
+
+- **Purpose**: Provide a clean and intuitive removal from view.
+- **Pattern**:
+  - Scale down to 95%
+  - Fade out to 0%
+  - Translate downward slightly (8–12px)
+- **Duration**: `duration-slow` (400ms)
+- **Easing**: `ease-in-quad`
+- **Trigger**: User or system
+- **Notes**:
+  - Exit motion mirrors entrance to maintain consistency and avoid cognitive load.
+
+#### ⚫ **Backdrop Animation**
+
+- **Purpose**: Focus user attention by dimming the background.
+- **Pattern**:
+  - Fade in and out opacity only (no movement or scale)
+- **Duration**: `duration-normal` (250ms)
+- **Easing**: `ease-none`
+- **Trigger**: System
+- **Notes**:
+  - Keep neutral and low-distraction. Use pure linear animation for opacity.
+
+---
+
+### 2. Sequencing
+
+- Apply **staggered sequencing** to child components within the modal container.
+- Recommended order (with optional delays between 50–75ms):
+  1. Title
+  2. Subtitle/Description
+  3. Input Fields (grouped)
+  4. Primary and Secondary Actions
+
+---
+
+### 3. Responsive Behavior
+
+- **Mobile Adaptation**:
+  - Replace scale/center-based animation with slide-from-bottom.
+  - **Entrance**:
+    - Slide in vertically from off-screen
+    - Easing: `ease-out-cubic`
+    - Duration: `duration-slow` (400ms)
+  - **Exit**:
+    - Slide down off-screen
+    - Easing: `ease-in-cubic`
+    - Duration: `duration-slow` (400ms)
+- Use full-width modal layout with rounded top corners for bottom sheets.
+
+---
+
+### 4. Accessibility Considerations
+
+- Respect `prefers-reduced-motion`:
+  - Remove scale and translation
+  - Use fade-only transitions for both modal and backdrop
+- Trap keyboard focus within modal while open
+- Provide motion alternatives where necessary (e.g., visible focus ring instead of animation)
+
+---
+
+Would you like the next component—**Drawer**, **Token Card**, or **Wallet Panel**—formatted in the same style?
