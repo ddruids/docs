@@ -100,10 +100,17 @@ Easing curves that control animation velocity are used to create smooth, natural
 
 #### Active
 
-- Assures completion of interaction (e.g. button click)
+- Assures completion of interaction (e.g., button click)
 - Patterns: Ripple, mouse-aware fill, border swirl
 
 #### Selected
 
 - Indicates persistent selection
 - Patterns: Left-to-right background fill, border swirl
+
+### Checklist Before Shipping
+
+- Used correct motion token (`duration-*`, `ease-*`)
+- Triggers mapped to user/system events
+- Fallbacks in place for reduced motion
+- Interactions feel fast but not rushed
