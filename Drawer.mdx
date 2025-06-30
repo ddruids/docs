@@ -1,5 +1,83 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Drawer"
+description: "Drawers provide access to supplementary content or actions without leaving the current view. Depending on usage, they can be temporary, persistent, or contextual."
 ---
 
+
+### 1. Motion States
+
+#### **Entrance (On Open)**
+
+- **Purpose**: Introduce secondary UI without disrupting primary flow.
+- **Pattern**:
+  - **Slide in** horizontally (left → right or right → left, based on placement)
+  - **Backdrop fades** to darken inactive areas
+- **Duration**: `duration-slow` (400ms)
+- **Easing**: `ease-out-quart`
+- **Trigger**: User interaction (button, swipe gesture)
+- **Notes**:
+  - Combine transform and opacity for a smoother transition
+  - Prevent background scroll on open
+
+---
+
+#### **Exit (On Close)**
+
+- **Purpose**: Dismiss drawer without abrupt interruption.
+- **Pattern**:
+  - **Slide out** in the reverse direction
+  - **Backdrop fades out**
+- **Duration**: `duration-slow` (400ms)
+- **Easing**: `ease-in-quart`
+- **Trigger**: User (close button, swipe, backdrop click) or system (auto-dismiss)
+- **Notes**: Reverse entrance timing and easing for visual consistency.
+
+---
+
+#### 🌓 **Backdrop**
+
+- **Pattern**: Pure opacity transition
+- **Duration**: `duration-normal` (250ms)
+- **Easing**: `ease-none`
+- **Notes**: Should not distract; serves only to focus attention on the drawer
+
+---
+
+### 2. Interaction Semantics
+
+- **User-triggered** via click, swipe, or shortcut
+- **Dismissal triggers**: tapping outside, pressing ESC, swipe-back gesture
+- Matches **slide-in/slide-out** entrance and exit standards
+
+---
+
+### 3. Sequencing
+
+- **Staggered sequencing** within the drawer content (e.g., wallet balances, filter controls):
+  - Delay per item: `duration-xshort` (75ms)
+  - Recommended flow: Top → Bottom or Left → Right
+- **Latency-aware loading**:
+  - Prioritize critical info (e.g,. balance, name) before less essential elements
+  - Ghost loaders may animate first, followed by real content on load
+
+---
+
+### 4. Easing Logic
+
+| **Element**   | **Easing**       | **Why**                                           |
+| :------------ | :--------------- | :------------------------------------------------ |
+| Slide In      | `ease-out-quart` | Feels fast and responsive for direct user actions |
+| Slide Out     | `ease-in-quart`  | Exit feels conclusive and deliberate              |
+| Backdrop Fade | `ease-none`      | Passive background avoids the perception of lag   |
+
+---
+
+### 5. Accessibility Considerations
+
+- **Focus trapping**: Ensure keyboard focus stays within the drawer when open
+- **Dismissal**: ESC key should close the drawer; provide a close button
+- **Reduced Motion**:
+  - Respect `prefers-reduced-motion`
+  - Replace slide with **fade-only** transitions for sensitive users
+- Maintain **ARIA roles**:
+  - Use `role="dialog"` or `role="complementary"` with `aria-label` or `aria-labelledby`
