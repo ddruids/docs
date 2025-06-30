@@ -1,57 +1,70 @@
 ---
 title: "Button"
-description: "Motion Spec for Button Component based on our System Foundation"
+description: "Motion guidelines for button components across platforms are aligned with our motion system foundations."
 ---
 
-#### **Motion States**
+#### **1. Motion States**
 
-**Hover (Web only)**
+#### 🔹 **Hover (Web Only)**
 
-- **Purpose**: Feedback and anticipation
-- **Pattern**: Mouse-aware fill or subtle scale-up
+- **Purpose**: Provides visual feedback to indicate interactivity, enhancing user anticipation.
+- **Pattern**:
+  - _Mouse-aware fill_: The hover effect follows cursor entry, making the interaction feel personal and responsive.
+  - _Subtle scale-up_: Slight button enlargement (e.g., 1.04x) to add depth without disruption.
 - **Duration**: `duration-xshort` (75ms)
 - **Easing**: `ease-out-quad`
-- **Trigger**: User
-- **Notes**: Creates a sense of interactivity without distraction
+- **Trigger**: User (pointer interaction)
+- **Notes**: Should feel lightweight and fast. Avoid using on mobile where hover is unsupported.
 
-**Focus (Mobile & keyboard nav)**
+#### 🔹 **Focus (Mobile & Keyboard Navigation)**
 
-- **Purpose**: Accessibility; indicates current focus
-- **Pattern**: Outline or bounce highlight
+- **Purpose**: Enhances accessibility by indicating which element has keyboard or screen-reader focus.
+- **Pattern**:
+  - _Outline glow_ or _bounce highlight_: A ring or border subtly animates into view or pulses.
 - **Duration**: `duration-short` (150ms)
 - **Easing**: `ease-in-out-quad`
-- **Trigger**: User (non-pointer)
+- **Trigger**: User (tab or focus via accessibility tools)
+- **Notes**: Must be perceivable under all conditions. Focus state complements, not replaces, hover state.
 
-**Active (On Click / Tap)**
+#### 🔹 **Active (On Click / Tap)**
 
-- **Purpose**: Assures user action is being taken
-- **Pattern**: Ripple effect or border swirl
+- **Purpose**: Confirms interaction and initiates an action with tactile feedback.
+- **Pattern**:
+  - _Ripple effect_ radiating from tap/click origin (material style)
+  - _Border swirl_ or color fill to simulate physical activation
 - **Duration**: `duration-short` (150ms)
-- **Easing**: `ease-in-quad` for press, `ease-out-quad` for release
-- **Trigger**: User
-- **Notes**: Completes hover motion and initiates transition
+- **Easing**:
+  - _Press-in_: `ease-in-quad`
+  - _Release-out_: `ease-out-quad`
+- **Trigger**: User (click or tap)
+- **Notes**: This state completes the transition, which started with hover/focus. If supported, combine with sound or haptics on mobile.
 
-**Selected (For toggle buttons or persistent states)**
+#### 🔹 **Selected (Persistent or Toggle Buttons)**
 
-- **Purpose**: Indicate the button is selected among other states
-- **Pattern**: Background fill animation (left-to-right), optional border swirl
+- **Purpose**: Indicates an active or toggled state when a button remains selected among others (e.g., filters, tab controls).
+- **Pattern**:
+  - _Left-to-right background fill_ animation
+  - _Optional border swirl_ or icon shift to reinforce selection
 - **Duration**: `duration-normal` (250ms)
 - **Easing**: `ease-in-out-quad`
 - **Trigger**: User
-- **Notes**: Use only if the button maintains an ongoing selected state
+- **Notes**: Use this state only where selection persists after interaction (e.g., toggle switches, filters, mode selectors).
 
 ---
 
-#### 2. **Sequencing**
+### 2. Sequencing
 
-- Not used for single buttons.
-- Use **staggered sequencing** when buttons are part of a group (e.g., segmented controls, toolbars).
-
----
-
-#### 3. **Accessibility Considerations**
-
-- Ensure focus animations are visible under reduced motion settings.
-- Respect `prefers-reduced-motion` and offer fallback states.
+- **Single Buttons**: No sequencing applied.
+- **Grouped Buttons** (e.g., segmented controls, toolbars):
+  - Use **staggered sequencing** with `duration-xshort` delay steps (50–75ms between siblings).
+  - Entrance: Left to right (LTR languages), top to bottom on vertical stacks.
 
 ---
+
+### 3. Accessibility Considerations
+
+- **Focus Visibility**: Ensure focus styles are always visible, even when animations are reduced or disabled.
+- **Reduced Motion Support**:
+  - Respect `prefers-reduced-motion`.
+  - Replace scale, ripple, or transforms with static state changes (e.g., color only).
+- **Contrast & Feedback**: All motion states must always retain sufficient contrast and legibility.
