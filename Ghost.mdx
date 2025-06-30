@@ -1,5 +1,85 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Skeleton Loader"
+description: "Ghost loaders serve as visual placeholders while real content is fetched, maintaining layout stability and perceived speed."
 ---
 
+### 1. Motion States
+
+#### ⚪ **Idle → Loading (Start)**
+
+- **Purpose**: Provide immediate feedback that content is loading while preserving the layout structure.
+- **Pattern**:
+  - Placeholder block(s) **fade in**
+  - A **shimmer animation** (gradient sweep) begins looping across the shape
+- **Durations**:
+  - **Fade in**: `duration-short` (150ms)
+  - **Shimmer loop**: 1500ms continuous loop
+- **Easing**:
+  - **Fade**: `ease-out-quad`
+  - **Shimmer**: `ease-none` (linear)
+- **Trigger**: System (automatically rendered during async loading)
+
+---
+
+#### ⚪ **Loading → Content Ready (End)**
+
+- **Purpose**: Seamlessly replace placeholders with real content without visual disruption.
+- **Pattern**:
+  - Ghost loader **fades out**
+  - Real content **fades in**, optionally with slight scale-up (e.g. 95% → 100%)
+- **Durations**:
+  - **Ghost Exit**: `duration-short` (150ms), `ease-in-quad`
+  - **Content Entry**: `duration-normal` (250ms), `ease-out-quad`
+- **Trigger**: System (triggered when data is fully loaded)
+
+---
+
+### 2. Sequencing
+
+- Use **staggered sequencing** for placeholder lists or grids:
+  - Delay between ghost item appearances: `duration-xshort` (75ms)
+- Apply a **latency-aware reveal strategy**:
+  - Primary/above-the-fold content fades in first
+  - Remaining ghost elements fade out after the actual content is visible
+
+---
+
+### 3. Easing Logic
+
+| **Element**     | **Easing**      | **Why**                              |
+| :-------------- | :-------------- | :----------------------------------- |
+| Ghost Fade In   | `ease-out-quad` | Feels lightweight and non-disruptive |
+| Ghost Fade Out  | `ease-in-quad`  | Quick removal with subtle exit       |
+| Content Fade In | `ease-out-quad` | Smooth transition from placeholder   |
+| Shimmer Motion  | `ease-none`     | Constant-speed illusion of loading   |
+
+---
+
+### 4. Variants
+
+| **Type**          | **Use Case**              | **Pattern**                                      |
+| :---------------- | :------------------------ | :----------------------------------------------- |
+| Line Ghost        | Text content              | Horizontal shimmer or subtle pulse               |
+| Block Ghost       | Cards, images, list items | Rectangular placeholders with left→right shimmer |
+| Circular Ghost    | Avatars, thumbnails       | Radial or arc shimmer                            |
+| Shimmer Direction | Contextual                | LTR (default), RTL-aware, or top→bottom          |
+
+---
+
+### 5. Accessibility Considerations
+
+- Ghost loaders are **purely visual** and **should not be read by screen readers**
+  - Add `aria-hidden="true"` to all skeleton elements
+- Use `role="status"` or `aria-live="polite"` on parent containers to announce content loading status
+- Respect `prefers-reduced-motion`:
+  - **Disable shimmer** animation
+  - Fallback to static placeholders with only fade transitions
+
+---
+
+### 6. Developer Notes
+
+- Avoid long shimmer cycles (\>2s), which can feel sluggish
+- Don't use shimmer as a progress bar; pair with loading indicators if exact feedback is required
+
+---
