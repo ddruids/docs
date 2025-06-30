@@ -17,7 +17,7 @@ description: "This documentation outlines the motion system used across our web 
 
 ## Motion Tokens
 
-Reusable variables that define animation durations and easing curves for smooth, consistent UI transitions.
+Reusable variables that define animation durations and easing curves for smooth, consistent UI transitions. We have motion tokens: Duration for Animation Speed and Acceleration Token for
 
 #### Duration Tokens
 
@@ -31,6 +31,56 @@ Predefined time values that standardize animation speeds for UI motion.
 | `duration-normal` | Balanced motion for tooltips, toasts, and standard UI reveals that it feels smooth but subtle. | 250ms |
 | `duration-slow`   | Slower animations for larger elements or full-screen transitions add weight and clarity.       | 400ms |
 | `duration-xslow`  | Deliberate pacing for major state changes or emphasis, such as modals or page shifts.          | 600ms |
+
+#### Acceleration Tokens
+
+Easing curves that control animation velocity are used to create smooth, natural transitions.
+
+| **Token**           | **Cubic Bezier**                      | **Description**                                                                                 |
+| :------------------ | :------------------------------------ | :---------------------------------------------------------------------------------------------- |
+| `ease-none`         | `cubic-bezier(0, 0, 1, 1)`            | Linear movement and constant speed, robotic feel. Used for opacity and non-interactive loaders. |
+| `ease-in-quad`      | `cubic-bezier(.55, .085, .68, .53)`   | Smooth acceleration, ideal for entrances or shaking effects.                                    |
+| `ease-in-cubic`     | `cubic-bezier(.550, .055, .675, .19)` | Fast acceleration, sharp entry animations, or dismissals.                                       |
+| `ease-in-quart`     | `cubic-bezier(.895, .03, .685, .22)`  | Even sharper ease-in, great for off-screen exits.                                               |
+| `ease-in-quint`     | `cubic-bezier(.755, .05, .855, .06)`  | Extreme acceleration feels deliberate and urgent.                                               |
+| `ease-in-expo`      | `cubic-bezier(.95, .05, .795, .035)`  | Exponential ramp-up is used for dramatic entrances.                                             |
+| `ease-in-circ`      | `cubic-bezier(.6, .04, .98, .335)`    | Organic-feeling speed-up is best for arcs or curves.                                            |
+| `ease-out-quad`     | `cubic-bezier(.25, .46, .45, .94)`    | Gentle deceleration is excellent for user-driven interactions like hover or tap.                |
+| `ease-out-cubic`    | `cubic-bezier(.215, .61, .355, 1)`    | Crisp ease-out adds energy and clarity.                                                         |
+| `ease-out-quart`    | `cubic-bezier(.165, .84, .44, 1)`     | Snap finish, works well for pop-outs or micro feedback.                                         |
+| `ease-out-quint`    | `cubic-bezier(.23, 1, .32, 1)`        | High-impact ease-out creates a satisfying end to animations.                                    |
+| `ease-out-expo`     | `cubic-bezier(.19, 1, .22, 1)`        | Sudden release, feels expressive, great for component reveals.                                  |
+| `ease-out-circ`     | `cubic-bezier(.075, .82, .165, 1)`    | Arc-style finish, subtle and smooth.                                                            |
+| `ease-in-out-quad`  | `cubic-bezier(.455, .03, .515, .955)` | Balanced entrance/exit, which is great for morphs and position shifts.                          |
+| `ease-in-out-cubic` | `cubic-bezier(.645, .045, .355, 1)`   | Ideal for UI transforms or drawer transitions. Looks natural and deliberate.                    |
+| `ease-in-out-quart` | `cubic-bezier(.77, 0, .175, 1)`       | Weighted and smooth, used for modal transitions.                                                |
+| `ease-in-out-quint` | `cubic-bezier(.86, 0, .07, 1)`        | High-fidelity movement feels intentional and elevated.                                          |
+| `ease-in-out-expo`  | `cubic-bezier(1, 0, 0, 1)`            | Maximum contrast ease, suitable for morphing large UI states.                                   |
+| `ease-in-out-circ`  | `cubic-bezier(.785, .135, .15, .86)`  | Natural curved motion, best for circular or orbit-style animations.                             |
+
+### Semantic Guidelines
+
+#### Animation Triggers
+
+- **User-triggered**: Use `ease-out` for entrance, `ease-in` for exit
+- **System-triggered**: Use `ease-in-out`
+
+#### Motion by Property
+
+- **Position/rotation**: `ease-in`, `ease-out`
+- **Opacity/color**: `ease-none`
+- **Mechanical/robotic**: `ease-none`
+
+#### Size-Based Duration
+
+- Small elements: `duration-xshort`, `short`
+- Medium elements: `duration-normal`
+- Large elements: `duration-slow`, `xslow`
+
+#### Sequencing
+
+- **Staggered**: Used for list reveals, search results
+- **Serial**: Used for alert chains, guidance flows
 
 <CardGroup cols={2}>
   <Card title="Duration Tokens" icon="pen-to-square" href="https://mintlify.com/docs/quickstart">

@@ -1,0 +1,57 @@
+---
+title: "Button"
+description: "Motion Spec for Button Component based on our System Foundation"
+---
+
+#### **Motion States**
+
+**Hover (Web only)**
+
+- **Purpose**: Feedback and anticipation
+- **Pattern**: Mouse-aware fill or subtle scale-up
+- **Duration**: `duration-xshort` (75ms)
+- **Easing**: `ease-out-quad`
+- **Trigger**: User
+- **Notes**: Creates a sense of interactivity without distraction
+
+**Focus (Mobile & keyboard nav)**
+
+- **Purpose**: Accessibility; indicates current focus
+- **Pattern**: Outline or bounce highlight
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-in-out-quad`
+- **Trigger**: User (non-pointer)
+
+**Active (On Click / Tap)**
+
+- **Purpose**: Assures user action is being taken
+- **Pattern**: Ripple effect or border swirl
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-in-quad` for press, `ease-out-quad` for release
+- **Trigger**: User
+- **Notes**: Completes hover motion and initiates transition
+
+**Selected (For toggle buttons or persistent states)**
+
+- **Purpose**: Indicate the button is selected among other states
+- **Pattern**: Background fill animation (left-to-right), optional border swirl
+- **Duration**: `duration-normal` (250ms)
+- **Easing**: `ease-in-out-quad`
+- **Trigger**: User
+- **Notes**: Use only if the button maintains an ongoing selected state
+
+---
+
+#### 2. **Sequencing**
+
+- Not used for single buttons.
+- Use **staggered sequencing** when buttons are part of a group (e.g., segmented controls, toolbars).
+
+---
+
+#### 3. **Accessibility Considerations**
+
+- Ensure focus animations are visible under reduced motion settings.
+- Respect `prefers-reduced-motion` and offer fallback states.
+
+---
