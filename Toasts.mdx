@@ -1,5 +1,92 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Toasts"
+description: "Toasts are non-blocking, time-sensitive notifications communicating lightweight system feedback (success, error, info) without interrupting the user’s workflow."
 ---
 
+### 1. Motion States
+
+#### **Entrance (On Appear)**
+
+- **Purpose**: Introduce a subtly emphasized toast, drawing attention without stealing focus.
+- **Pattern**:
+  - **Slide in** from the screen’s bottom (mobile) or top/right edge (desktop)
+  - Simultaneous **fade-in** from 0% to 100% opacity
+- **Duration**: `duration-normal` (250ms)
+- **Easing**: `ease-in-out-cubic`
+- **Trigger**: System event (e.g., form success, background process complete)
+- **Notes**:
+  - Avoid bouncing or overshooting, the oast should feel smooth, not demanding
+  - Can optionally include a **micro pulse** for success messages
+
+---
+
+#### **Exit (Auto-dismiss or Manual Close)**
+
+- **Purpose**: Remove toast cleanly from view, either automatically or on user dismissal.
+- **Pattern**:
+  - **Slide out** in the same direction as the entrance
+  - **Fade out** to 0% opacity
+- **Duration**: `duration-normal` (250ms)
+- **Easing**: `ease-in-quad`
+- **Trigger**: System timeout (e.g., 5 seconds) or manual user action (click 'x')
+- **Notes**: Maintain consistency between the entrance and exit direction
+
+---
+
+### 2. Interaction Semantics
+
+- Triggered by **system events** (status changes, confirmations, errors)
+- Categorized under **standard UI animation** (not direct manipulation)
+- Does **not trap focus**, but must be screen-reader detectable (`aria-live`)
+
+---
+
+### 3. Sequencing
+
+- **Serial sequencing**:
+  - Used when multiple toasts are queued or stacked
+  - Apply entry delay: `duration-xshort` (75ms) between items
+- **Staggered exit**:
+  - Used when multiple toasts are dismissed in sequence (e.g., undo stack or bulk actions)
+  - Reverse order preferred for clarity
+
+---
+
+### 4. Easing Logic
+
+| **Motion Type** | **Easing Token**    | **Purpose**                              |
+| :-------------- | :------------------ | :--------------------------------------- |
+| Toast Entrance  | `ease-in-out-cubic` | Balanced motion; smooth reveal           |
+| Toast Exit      | `ease-in-quad`      | Subtle and quick dismissal               |
+| Opacity-only    | `ease-none`         | Used if the slide is disabled (fallback) |
+
+---
+
+### 5. Urgency & Emphasis Patterns
+
+Toasts can include **semantic urgency cues**:
+
+- **Success**:
+  - Light **pulse ring** or scale-in pop on icon
+  - Green accent animation using `ease-out-quad`
+- **Error**:
+  - **Brief horizontal shake** (4–6px) using `ease-in-cubic`
+  - Red glow pulse if persistent
+- **Info/Warning**:
+  - Subtle background tint or icon fill shift, no animation emphasis
+
+> These micro animations should only be used if content is visible for more than 2 seconds and motion is enabled.
+
+---
+
+### 6. Accessibility Considerations
+
+- Toasts must:
+  - Use `aria-live="polite"` or `assertive` Depending on criticality
+  - Be **dismissible** and **time-bound**
+  - Be **keyboard dismissible** (focusable close button or ESC key)
+- Respect `prefers-reduced-motion`:
+  - **Disable slide and shake**
+  - Use **fade only** as motion fallback.
+
+---
