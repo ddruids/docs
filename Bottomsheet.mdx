@@ -1,5 +1,95 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Bottom Sheet"
+description: "The bottom sheet is a mobile-first UI pattern that presents contextually relevant actions or content from the bottom of the screen without taking over the full view."
 ---
 
+### 1. Motion States
+
+#### ⬆️ **Entrance (On Open)**
+
+- **Purpose**: Introduce an interactive panel smoothly, without disrupting the screen context.
+- **Pattern**:
+  - Sheet slides in vertically: `translateY(100%) → 0`
+  - Backdrop fades from 0% to 100% opacity
+- **Duration**: `duration-slow` (400ms)
+- **Easing**: `ease-out-cubic`
+- **Trigger**: User (tap, button press, gesture)
+- **Notes**: Use swipe-gesture responsiveness (e.g., friction-based drag) for high fluidity.
+
+---
+
+#### ⬇️ **Exit (On Dismiss)**
+
+- **Purpose**: Remove the sheet without abruptness.
+- **Pattern**:
+  - Slide down: `translateY(0) → 100%`
+  - Backdrop fades out
+- **Duration**: `duration-slow` (400ms)
+- **Easing**: `ease-in-cubic`
+- **Trigger**: User (swipe down, tap backdrop) or system (timeout, navigation)
+- **Notes**: Match the entrance curve in reverse for perceptual consistency.
+
+---
+
+#### 🎭 **Backdrop Animation**
+
+- **Purpose**: Dim surrounding content and focus attention on the sheet
+- **Pattern**:
+  - Fade in/out only (no transform)
+- **Duration**: `duration-normal` (250ms)
+- **Easing**: `ease-none`
+- **Notes**: Opacity-only transitions ensure non-distracting behavior
+
+---
+
+### 2. Interaction Semantics
+
+- **Primary trigger**: User interaction (tap or swipe up from the screen bottom)
+- **Secondary trigger**: System logic (confirmation flows, autofill prompts)
+- **Dismissal methods**:
+  - Swipe down
+  - Tap outside (on backdrop)
+  - ESC key (keyboard fallback)
+
+---
+
+### 3. Sequencing
+
+- When displaying a list of items, use **staggered sequencing** to animate content in order.
+- Recommended:
+  - **Delay**: `duration-xshort` (75ms) between list elements
+  - **Direction**: Top-down within the sheet body
+
+---
+
+### 4. Easing Logic Summary
+
+| **Element**        | **Motion** | **Easing**       | **Purpose**                                  |
+| :----------------- | :--------- | :--------------- | :------------------------------------------- |
+| Sheet entrance     | Slide-in   | `ease-out-cubic` | Immediate response to user trigger           |
+| Sheet exit         | Slide-out  | `ease-in-cubic`  | Smooth and polished closure                  |
+| Backdrop animation | Fade only  | `ease-none`      | Passive visual layer without motion emphasis |
+
+---
+
+### 5. Variants
+
+- **Partial Sheet**:
+  - Height: 30–50% of screen
+  - Drag to expand to full height
+  - Great for quick actions or confirmation flows
+- **Full Sheet**:
+  - Occupies 90–100% of vertical space
+  - Ideal for complex tasks (forms, selection modals, keyboard usage)
+
+---
+
+### 6. Accessibility Considerations
+
+- Trap keyboard focus within the sheet
+- Allow ESC or an accessible dismissal button
+- Respect `prefers-reduced-motion`:
+  - Replace `translateY` motion with **fade-in/out only**
+  - Keep sheet and backdrop transitions distinct but minimal
+
+---

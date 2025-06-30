@@ -25,6 +25,7 @@
             "group": "Components",
             "pages": [
               "Button",
+              "Bottomsheet",
               "Cards",
               "Drawer",
               "Ghost",
