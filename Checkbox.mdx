@@ -1,5 +1,100 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Checkbox"
+description: "Checkmarks serve as immediate feedback for binary selections. Motion reinforces clarity, reinforces intent, and ensures accessibility across input methods."
 ---
 
+### 1. Motion States
+
+#### ☑️ **Unchecked → Checked (Select)**
+
+- **Purpose**: Visually confirm that a selection has been made.
+- **Pattern**:
+  - Optional **ripple** from the center on click or tap
+  - **Container fill** animates from neutral to active
+  - **Checkmark icon** scales in from 0 to 100% with slight “pop” (e.g., overshoot to 1.1x → 1x)
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-out-quad`
+- **Trigger**: User
+- **Notes**: Feedback must feel quick but smooth—reinforces correctness.
+
+---
+
+#### ⬜ **Checked → Unchecked (Deselect)**
+
+- **Purpose**: Visually reverse confirmation and return to a neutral state.
+- **Pattern**:
+  - **Checkmark scales down** and fades out simultaneously
+  - **Container fill** fades back to transparent or background color
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-in-quad`
+- **Trigger**: User
+- **Notes**: Clear and immediate, without a lingering visual footprint.
+
+---
+
+#### 🖱 **Hover (Web only)**
+
+- **Purpose**: Anticipates that the element is interactive.
+- **Pattern**:
+  - **Outline glow** or **background tint** fades in
+  - Optional **scale-up** (1.05x max)
+- **Duration**: `duration-xshort` (75ms)
+- **Easing**: `ease-out-quad`
+- **Notes**: Should not shift layout or affect alignment.
+
+---
+
+#### 🎯 **Focus (Keyboard / Mobile)**
+
+- **Purpose**: Indicate accessibility focus for non-pointer users.
+- **Pattern**:
+  - **Outline pulse** or ring expansion around the checkbox
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-in-out-quad`
+- **Trigger**: User (tab/focus)
+- **Notes**: Visible with high contrast and no reliance on color alone.
+
+---
+
+#### **Indeterminate State** (Optional)
+
+- **Purpose**: Show partial or mixed selection, which is common in multi-select lists.
+- **Pattern**:
+  - Horizontal bar **slides in** and **fades** into place
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-in-out-cubic`
+- **Notes**: Animates from center to ensure visual clarity and consistency.
+
+---
+
+### 2. Sequencing
+
+- **Isolated Checkbox**: No sequencing required
+- **Lists or Filters** (e.g., batch selection, token tags):
+  - Use **staggered sequencing** (e.g., 75ms delay between sibling checkboxes)
+  - Direction: Top-down or left-righ,t depending onthe  layout
+
+---
+
+### 3. Easing Logic Summary
+
+| **Interaction**      | **Easing**          | **Why**                                  |
+| :------------------- | :------------------ | :--------------------------------------- |
+| Check-in             | `ease-out-quad`     | Feels responsive and fluid               |
+| Uncheck              | `ease-in-quad`      | Closes motion decisively                 |
+| Focus / Hover        | `ease-in-out-quad`  | Soft and accessible for interaction cues |
+| Indeterminate Slide  | `ease-in-out-cubic` | Balanced animation for partial state     |
+| Pure Opacity Changes | `ease-none`         | Constant-speed fade without acceleration |
+
+---
+
+### 4. Accessibility Considerations
+
+- Every motion state must map to an ARIA state:
+  - `aria-checked="true"` for checked
+  - `aria-checked="false"` for unchecked
+  - `aria-checked="mixed"` for indeterminate
+- Do **not rely on animation alone** to convey meaning—ensure visual changes are perceivable with reduced motion
+- Respect `prefers-reduced-motion`: replace scale and fade with simple state swaps if necessary
+
+---
