@@ -1,5 +1,108 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Toggle"
+description: "Interactive binary control with responsive motion feedback. Used in settings, preferences, and quick-access panels."
 ---
 
+## 1. Motion States
+
+#### 🔛 **Toggle On (Off → On)**
+
+- **Purpose**: Confirm activation of a feature or setting.
+- **Pattern**:
+  - Thumb smoothly slides from **left to right**
+  - Track color **fills** from neutral to active
+  - Optional: **pop or ripple** feedback on thumb
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-out-cubic`
+- **Trigger**: User
+- **Notes**: Should feel snappy and confident without overshooting.
+
+---
+
+#### ⏹️ **Toggle Off (On → Off)**
+
+- **Purpose**: Communicate deactivation or disablement.
+- **Pattern**:
+  - Thumb slides **right to left**
+  - Track **fades** back to neutral color
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-in-cubic`
+- **Trigger**: User
+- **Notes**: The motion should end decisively but remain subtle.
+
+---
+
+#### 🖱 **Hover (Web only)**
+
+- **Purpose**: Visual hint that the element is interactive.
+- **Pattern**:
+  - Thumb subtly **lifts or glows**
+  - Track **brightens** slightly
+- **Duration**: `duration-xshort` (75ms)
+- **Easing**: `ease-out-quad`
+- **Trigger**: User (pointer)
+- **Notes**: Must not interfere with toggle action.
+
+---
+
+#### 🎯 **Focus (Keyboard / Mobile)**
+
+- **Purpose**: Indicate keyboard or screen reader focus.
+- **Pattern**:
+  - Thumb displays a **glow ring** or **bounce pulse**
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-in-out-quad`
+- **Trigger**: User (non-pointer)
+- **Notes**: Ensure clear visibility for accessibility use cases.
+
+---
+
+### 2. Interaction Semantics
+
+- Triggered by user interaction (tap, click, keyboard)
+- Binary toggle: represents `on` or `off` state
+- Should provide **visual, haptic (if supported)**, and **screen reader** feedback
+
+---
+
+### 3. Easing Logic
+
+| **State**  | **Easing**         | **Why**                               |
+| :--------- | :----------------- | :------------------------------------ |
+| Toggle On  | `ease-out-cubic`   | Feels responsive and engaging         |
+| Toggle Off | `ease-in-cubic`    | Ends firmly without drawing attention |
+| Hover      | `ease-out-quad`    | Soft anticipation with quick reaction |
+| Focus      | `ease-in-out-quad` | Balanced motion for assistive clarity |
+
+---
+
+### 4. Sequencing
+
+- **Single Toggle**: No sequencing
+- **Grouped Toggles (e.g. Settings Panel)**:
+  - Apply **staggered sequencing** on appearance
+  - Delay per item: `duration-xshort` (50–75ms)
+  - Direction: top to bottom (vertical lists), left to right (horizontal toggles)
+
+---
+
+### 5. Accessibility Considerations
+
+- Must be:
+  - Fully **focusable** and **keyboard navigable**
+  - Accessible via `aria-checked`, `aria-label`, or `role="switch"`
+- Honor `prefers-reduced-motion`:
+  - Replace slide and color fills with instant state changes
+  - Ensure state clarity with static visual change (on/off icon or label)
+
+---
+
+Let me know if you'd like the same structure for:
+
+- **Progress Bar**
+- **Form Error / Shake Animation**
+- **Tabs**
+- **Floating Action Button (FAB)**
+- **Token Card / Wallet List**
+
+Or I can create a **component-to-motion mapping table** next.
