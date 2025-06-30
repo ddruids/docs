@@ -1,5 +1,65 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Spinner"
+description: "Motion documentation for the Loading Spinner component:"
 ---
 
+
+#### 1. **Motion States**
+
+ **Idle → Active (Start)**
+
+- **Purpose**: Indicate background activity or waiting state
+- **Pattern**:
+  - Spinner fades in
+  - Begins continuous rotation
+- **Duration**:
+  - Fade in: `duration-short` (150ms)
+  - Rotation: infinite loop, one rotation every 1000ms
+- **Easing**:
+  - Fade: `ease-out-quad`
+  - Rotation: `ease-none` (linear constant speed)
+- **Trigger**: System
+
+**Active → Complete (End)**
+
+- **Purpose**: Cleanly conclude the loading state
+- **Pattern**:
+  - Spinner fades out
+  - Optionally scales down slightly as it exits
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-in-quad`
+- **Trigger**: System
+
+---
+
+#### 2. **Interaction Semantics**
+
+- **System-triggered**
+- Always uses **linear easing** for rotation to signal mechanical, uninterrupted motion
+
+---
+
+#### 3. **Easing Logic**
+
+- **Fade In**: `ease-out`
+- **Fade Out**: `ease-in`
+- **Rotation**: `ease-none` For smooth, continuous spin
+
+---
+
+#### 4. **Variants**
+
+- **Inline Spinner** (used in buttons or small components)
+  - Smaller size
+  - Faster rotation (800ms per loop)
+  - No entrance animation
+- **Full Page Spinner**
+  - Includes backdrop fade
+  - May include text like “Loading...” with fade-in and staggered dots
+
+---
+
+#### 5. **Accessibility Considerations**
+
+- Spinner should have `role="status"` with descriptive text hidden from view (e.g., “Loading…” for screen readers)
+- Respect `prefers-reduced-motion`Disable rotation and fallback to pulsing or blinking dot
