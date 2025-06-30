@@ -32,6 +32,7 @@
               "Modal",
               "Spinner",
               "Toasts",
+              "Toggle",
               "Tooltip",
               "quickstart",
               "development"
