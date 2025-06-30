@@ -82,30 +82,27 @@ Easing curves that control animation velocity are used to create smooth, natural
 - **Staggered**: Used for list reveals, search results
 - **Serial**: Used for alert chains, guidance flows
 
-<CardGroup cols={2}>
-  <Card title="Duration Tokens" icon="pen-to-square" href="https://mintlify.com/docs/quickstart">
-    Predefined time values standardize animation speeds for UI motion.
-  </Card>
-  <Card title="Acceleration Tokens" icon="image" href="https://mintlify.com/docs/development">
-    Easing curves that control animation velocity are used to create smooth, natural transitions.
-  </Card>
-</CardGroup>
+### Motion States
 
-## Make it yours
+#### Hover
 
-Update your docs to your brand and add valuable content for the best user conversion.
+- For feedback and reveal (e.g., token hover, cards)
+- Patterns:
+  - Scale hover (visible container)
+  - Spotlight hover (1:1 elements)
+  - Mouse-aware underline (tab text)
 
-<CardGroup cols={2}>
-  <Card title="Customize Style" icon="palette" href="https://mintlify.com/docs/settings/global">
-    Customize your docs to your company's colors and brands
-  </Card>
-  <Card title="Reference APIs" icon="code" href="https://mintlify.com/docs/api-playground/openapi">
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card title="Add Components" icon="screwdriver-wrench" href="https://mintlify.com/docs/content/components/accordions">
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card title="Get Inspiration" icon="stars" href="https://mintlify.com/customers">
-    Check out our showcase of our favorite documentation
-  </Card>
-</CardGroup>
+#### Focus
+
+- For mobile/non-pointer users
+- Emphasizes location and selection context
+
+#### Active
+
+- Assures completion of interaction (e.g. button click)
+- Patterns: Ripple, mouse-aware fill, border swirl
+
+#### Selected
+
+- Indicates persistent selection
+- Patterns: Left-to-right background fill, border swirl
