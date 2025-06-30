@@ -17,7 +17,22 @@
             "group": "Get Started",
             "pages": [
               "index",
+              "quickstart",
+              "development"
+            ]
+          },
+          {
+            "group": "Components",
+            "pages": [
               "Button",
+              "Cards",
+              "Drawer",
+              "Ghost",
+              "Icons",
+              "Modal",
+              "Spinner",
+              "Toasts",
+              "Tooltip",
               "quickstart",
               "development"
             ]
