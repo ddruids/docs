@@ -1,5 +1,97 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Icons"
+description: "Used in navigation controls, toggles, filter chips, and interactive widgets. Combines icon motion with background fill and outline feedback for clarity and expressiveness."
 ---
 
+### 1. Motion States
+
+#### 🖱 **Hover (Web Only)**
+
+- **Purpose**: Signal interactivity and encourage exploration.
+- **Pattern**:
+  - **Container fill** gently fades in (light brand tint or gray)
+  - **Outline** appears or lightly pulses
+  - Optional: **Icon scale-up** to 1.05× for tactile feel
+- **Duration**: `duration-xshort` (75ms)
+- **Easing**: `ease-out-quad`
+- **Trigger**: User (pointer interaction)
+- **Notes**:
+  - Use the **scale hover** pattern for icons with defined containers
+  - Do not shift the layout or nudge the surrounding elements
+
+---
+
+#### 🎯 **Focus (Keyboard / Mobile)**
+
+- **Purpose**: Improve accessibility by highlighting navigational focus.
+- **Pattern**:
+  - **Outline pulse** or glow ring expansion
+- **Duration**: `duration-short` (150ms)
+- **Easing**: `ease-in-out-quad`
+- **Trigger**: User (tab, directional nav, screen reader focus)
+- **Notes**:
+  - Ensure visual distinction even under reduced motion
+  - Avoid combining with hover effects unless a fallback is managed
+
+---
+
+#### ✴️ **Active (Click / Tap)**
+
+- **Purpose**: Acknowledge the moment of action.
+- **Pattern**:
+  - **Mouse-aware fill ripple** emanates from the interaction point
+  - Optional **border swirl** or animated stroke ring
+- **Duration**: `duration-short` (150ms)
+- **Easing**:
+  - **Press-in**: `ease-in-quad`
+  - **Release-out**: `ease-out-quad`
+- **Trigger**: User
+- **Notes**: Keep ripple intensity subtle—aim for polish, not distraction
+
+---
+
+#### ✅ **Selected (Persistent State)**
+
+- **Purpose**: Indicate ongoing selection, e.g., toggles in nav menus.
+- **Pattern**:
+  - **Left-to-right background fill** animation (100% width)
+  - **The icon color** shifts to highlight (e.g., brand primary or white)
+  - **Outline** thickens subtly or animates with a swirl
+- **Duration**: `duration-normal` (250ms)
+- **Easing**: `ease-in-out-quart`
+- **Trigger**: User (tap or system state sync)
+- **Notes**:
+  - Pair with haptics or sound feedback on mobile if applicable
+
+---
+
+### 2. Sequencing
+
+- Use in **horizontal nav bars**, **icon button clusters**, or **tool panels**
+- Apply **staggered sequencing** on the mount:
+  - Animate icon fill → outline draw → label (if present)
+  - Delay per icon: `duration-xshort` (75ms)
+  - Direction: left → right (LTR) or contextually
+
+---
+
+### 3. Easing Logic
+
+| **Motion Type**      | **Easing**                       | **Purpose**                         |
+| :------------------- | :------------------------------- | :---------------------------------- |
+| Hover feedback       | `ease-out-quad`                  | Feels responsive and anticipatory   |
+| Active ripple        | `ease-in-quad` → `ease-out-quad` | Sharp reaction \+ soft release      |
+| Selection transition | `ease-in-out-quart`              | Smooth and intentional state change |
+| Outline fade only    | `ease-none`                      | Neutral appearance change           |
+
+---
+
+### 4. Accessibility Considerations
+
+- **Keyboard focus and selected states** must be distinguishable from hover
+- Avoid relying on **color alone** to differentiate interaction states
+- Respect `prefers-reduced-motion`:
+  - Disable ripple and stroke swirl
+  - Use instant fill changes and solid color transitions.
+
+---
