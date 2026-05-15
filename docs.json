@@ -33,7 +33,9 @@
           "group": "Get Started",
           "pages": [
             "index",
+            "index-copied-1",
             "quickstart",
+            "untitled-page",
             "untitled-page"
           ]
         },
