@@ -9,25 +9,6 @@
     },
     "favicon": "/favicon.svg",
     "navigation": {
-      "global": {
-        "anchors": [
-          {
-            "anchor": "Documentation",
-            "icon": "book-open-cover",
-            "href": "https://mintlify.com/docs"
-          },
-          {
-            "anchor": "Community",
-            "icon": "slack",
-            "href": "https://mintlify.com/community"
-          },
-          {
-            "anchor": "Blog",
-            "icon": "newspaper",
-            "href": "https://mintlify.com/blog"
-          }
-        ]
-      },
       "pages": [
         {
           "group": "Get Started",
@@ -77,6 +58,7 @@
         },
         {
           "group": "Essentials",
+          "hidden": true,
           "pages": [
             "essentials/markdown",
             "essentials/code",
