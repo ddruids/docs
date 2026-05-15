@@ -1,0 +1,27 @@
+---
+title: "Z-index"
+description: "Stacking order across surfaces and overlays."
+mode: "wide"
+---
+
+## Tokens
+
+| Token | Value | Use |
+| :-- | :-- | :-- |
+| `z-base` | 0 | Default stacking context |
+| `z-dropdown` | 100 | Popovers, select menus, autocomplete |
+| `z-sticky` | 200 | Sticky headers, sticky table columns |
+| `z-overlay` | 300 | Modal/drawer backdrops |
+| `z-modal` | 400 | Modal and drawer content |
+| `z-toast` | 500 | Transient notifications |
+| `z-tooltip` | 600 | Tooltips, always above everything |
+
+## Rules
+
+- Use system layers only — no arbitrary z-index values
+- Nothing higher than `z-tooltip`
+- 100-unit gaps between layers leave room to slot new layers in later without renumbering
+
+## See also
+
+- `[engineering/tailwind.md](../engineering/tailwind.md)` — Tailwind `zIndex` config
