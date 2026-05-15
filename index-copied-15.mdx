@@ -1,0 +1,24 @@
+---
+description: "Stroke width scale for borders and dividers.
+"
+mode: "wide"
+title: "Border Width"
+---
+
+## Tokens
+
+| Token | Value | Use |
+| :-- | :-- | :-- |
+| `border/width/thin` | 0.5 | Hairline separators, table cell borders, dense list dividers |
+| `border/width/default` | 1 | Standard borders — inputs, cards, most containers |
+| `border/width/strong` | 2 | Emphasis borders — focus rings, selected states, active tabs |
+
+## Rules
+
+- Use borders only when spacing or contrast is insufficient for separation
+- Prefer `thin` for structural dividers between content blocks; reserve `default` and `strong` for contained elements
+
+## Rendering note for `0.5`
+
+`0.5px` borders require a pixel density of\> 2× to render crisply. At 1× density (typical external monitors at default scaling) browsers will either snap 0.5px to 1px (Chrome) or render a ghost line that nearly disappears (some older Safari).\
+This is acceptable as graceful degradation. If strict parity across devices matters, use `1` (default) instead of `thin`.
