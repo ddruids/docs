@@ -3,9 +3,9 @@
     "theme": "mint",
     "name": "Mint Starter Kit",
     "colors": {
-      "primary": "#FDB850",
-      "light": "#FDB850",
-      "dark": "#FDB850"
+      "primary": "#000000",
+      "light": "#000000",
+      "dark": "#000000"
     },
     "favicon": "/favicon.svg",
     "navigation": {
@@ -28,7 +28,7 @@
           }
         ]
       },
-      "groups": [
+      "pages": [
         {
           "group": "Get Started",
           "pages": [
@@ -40,7 +40,6 @@
         {
           "group": "Components",
           "pages": [
-            "Button",
             "Bottomsheet",
             "Cards",
             "Checkbox",
@@ -64,11 +63,12 @@
             "essentials/navigation",
             "essentials/reusable-snippets"
           ]
-        }
+        },
+        "colors"
       ]
     },
     "logo": {
-      "light": "/logo/bungee white.svg",
+      "light": "/images/bungee_logo_P_FC4x.webp",
       "dark": "/logo/bungee white.svg"
     },
     "navbar": {
@@ -90,5 +90,9 @@
         "github": "https://github.com/mintlify",
         "linkedin": "https://linkedin.com/company/mintlify"
       }
+    },
+    "appearance": {
+      "strict": false,
+      "default": "light"
     }
   }
