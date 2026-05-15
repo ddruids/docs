@@ -1,0 +1,114 @@
+---
+title: "Changelog"
+description: "All notable changes to the Bungee Design System are documented here. Format follows Keep a Changelog; versioning follows Semantic Versioning."
+mode: "wide"
+---
+
+## \[2.0.0\] — 2026-05-08
+
+Initial release of the modular design system documentation. Replaces the single-file `foundations.md` and `components.md` with a structured tree.
+
+### Added
+
+- Modular doc structure with separate files per token type, component, and pattern
+- Brand strategy, personality, values, and logo principles in `foundations.md`
+- Six-principle design framework in `principles.md`
+- Full UX writing framework based on Material's communication guidance — `content-strategy.md`
+- Motion philosophy with 8 composed patterns — `motion.md`
+- WCAG AA accessibility requirements — `accessibility.md`
+- Governance, contribution guide, and versioning policy
+- Color tokens (Mode 1 Dark \+ Mode 2 Light)
+- Typography (Bricolage Grotesque \+ Aeonik Fono, with Heading/Body/Interactive/Number scales)
+- Iconography (Material Symbols Rounded with axis controls)
+- Spacing (geometric progression: 0, 2, 4, 8, 16, 32, 64, 128, 256)
+- Radius (0, 4, 8, 12, 16, full)
+- Border width (0.5, 1, 2)
+- Opacity (0, 25, 50, 75, 100)
+- Breakpoints (mobile 440, tablet 810, desktop 1280)
+- Grid (16-col desktop/tablet, 8-col mobile, 32px gutter)
+- Motion tokens (6 durations \+ 19 easings)
+- Z-index scale
+- Theme modes (Dark default \+ Light)
+- 15 component specs: button, input, modal, bottom sheet, drawer, tooltip, toasts, cards, checkboxes, toggle, pagination, skeleton, loader, spinner, icons
+- 7 patterns: forms, navigation, transaction states, loading patterns, empty states, error handling, cross-chain flows
+- Engineering implementation docs: Tailwind config, CSS variables, token sync, theming, implementation rules
+- AI workflow guidance for design tasks
+- Accent 6 (Turquoise) palette and semantic tokens
+- Light mode (Mode 2) for all semantic color tokens
+- `Link` text token (Yellow/200 dark, Yellow/700 light)
+- `Icon Primary 1` semantic token (resolves the previous duplicate)
+- Consolidated `Interactive - 01/02/03` typography tokens (replaces separate Button \+ Link tokens)
+- Line-heights for all text styles (125% headings, 130% body, default for the rest)
+
+### Changed
+
+- `Interactive - 01/02/03` replaces `Button - 01/02` and `Link - 01/02/03` since they were identical token-for-token
+- `Icon Primary 1` (was `Icon Primary 2`) now maps to `Grey/200` to give icons a real secondary role
+- Spacing scale documented as a geometric progression — clarifies why 20 and 24 are intentionally absent
+
+### Deprecated
+
+- `Button - 01/02` typography tokens — use `Interactive - 01/02`
+- `Link - 01/02/03` typography tokens — use `Interactive - 01/02/03`
+- `Icon Primary 2` semantic token — use `Icon Primary 1`
+
+### Removed
+
+- N/A (deprecated tokens persist through v2.0; removal targeted for v3.0)
+
+### Security
+
+- N/A
+
+---
+
+## Open issues
+
+These are tracked here so they're visible across the system. Each is owned by the Design System Owner until resolved.
+
+### Color
+
+1. `Layer 1` is darker than `Background` in both modes — inverts elevation convention in dark mode but reads as "sunken" in light mode. Confirm intent.
+2. Accent BG naming is inconsistent (`Accent BG1` vs `Accent BG 5` / `Accent BG 6`)
+3. No `Border Focus` or `Border Default` tokens — focus states have no system source
+4. No `Disabled Text`, `Tertiary Text`, or `Inverse Text` tokens
+5. No Secondary / Ghost / Destructive button color tokens
+6. In light mode, `Layer 2` and `Layer 3` both map to `#FFFFFF` — without shadows, surfaces at different elevations read identically. Resolve by remapping `Layer 3` to `Grey/50` or by leaning on `Border Subtle`.
+
+### Typography
+
+7. No `Label` or `Caption` style for form labels and metadata
+8. No `Code` style — inline code and technical values (tx hashes, addresses) have no mono text token (only `Number` uses mono)
+
+### Iconography
+
+9. Icon size tokens (`icon/size/xs…xl`) are documented but not yet in Figma
+10. No tokenized defaults for Material Symbols variable axes (`FILL`, `wght`, `GRAD`, `opsz`) — overrides happen inline
+
+### Engineering parity
+
+- Drift between Figma and code is tracked in `engineering/token-sync.md`
+- Light mode CSS overrides not yet implemented in `.bn-swap-wrap`
+
+---
+
+## Versioning policy
+
+- **Major** (X.0.0) — breaking changes
+- **Minor** (X.Y.0) — additive changes, no breakage
+- **Patch** (X.Y.Z) — fixes, drift resolution, doc improvements
+
+See `governance.md` for what counts as breaking.
+
+---
+
+## How to read entries
+
+Each entry under a version follows the Keep-a-Changelog categories:
+
+- **Added** — new features
+- **Changed** — changes in existing functionality
+- **Deprecated** — soon-to-be-removed features (still present)
+- **Removed** — features removed in this release
+- **Fixed** — bug fixes
+- **Security** — security-relevant fixes
