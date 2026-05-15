@@ -97,5 +97,13 @@
     },
     "background": {
       "decoration": "grid"
+    },
+    "fonts": {
+      "heading": {
+        "family": "Geist"
+      },
+      "body": {
+        "family": "Geist"
+      }
     }
   }
