@@ -1,0 +1,74 @@
+---
+description: "Three named breakpoints define responsive layout behavior. Values represent the `min-width` at which each range begins (mobile-first)."
+mode: "wide"
+title: "Grids & Breakpoints"
+---
+
+## Tokens
+
+| Token | Value | Range |
+| :-- | :-- | :-- |
+| `breakpoint-mobile` | 440px | 440 – 809 |
+| `breakpoint-tablet` | 810px | 810 – 1279 |
+| `breakpoint-desktop` | 1280px | 1280\+ |
+
+## Notes
+
+- Anything below 440px is treated as small-mobile and inherits mobile styles (no separate breakpoint)
+- 810 aligns with iPad portrait width. tablet styles kick in at that surface
+- 1280 is the canonical laptop/desktop threshold
+
+## Rules
+
+- Layout shifts happen at system-defined breakpoints only
+- Avoid component-specific custom breakpoints
+- Design at each of the three widths, not at arbitrary intermediate sizes
+
+---
+
+## Grids
+
+Layout grid per breakpoint. All grids are **stretch** — columns scale fluidly with the viewport width within the fixed margin and gutter constraints.
+
+---
+
+## Tokens
+
+| Breakpoint | Columns | Margin | Gutter | Type |
+| :-- | :-- | :-- | :-- | :-- |
+| Desktop (1280\+) | 16 | 64 | 32 | Stretch |
+| Tablet (810–1279) | 16 | 32 | 32 | Stretch |
+| Mobile (440–809) | 8 | 16 | 32 | Stretch |
+
+---
+
+## Behavior
+
+- **Stretch** — columns fluidly fill available width within margins
+- **Desktop and Tablet share a 16-column grid** — only the margin changes, so layouts that span "6 of 16 columns" stay proportionally equivalent across both
+- Mobile drops to 8 columns since at narrower viewports a 16-col grid produces unusable column widths
+
+---
+
+## Approximate column widths
+
+| Viewport | Available width (after margin) | Column width (approx) |
+| :-- | :-- | :-- |
+| Desktop at 1280 | 1152 | ~42 |
+| Desktop at 1920 | 1792 | ~76 |
+| Tablet at 810 | 746 | ~17 |
+| Tablet at 1279 | 1215 | ~46 |
+| Mobile at 440 | 408 | ~23 |
+| Mobile at 809 | 777 | ~69 |
+
+> The column width at the low end of each range (Tablet at 810 ≈ 17px, Mobile at 440 ≈ 23px) is very narrow relative to the 32px gutter. This is a consequence of using `Spacing - L` for gutters across all breakpoints. If designs at these sizes feel cramped, consider dropping gutter to `Spacing - M` (16) on mobile.
+
+---
+
+## Rules
+
+- Use the grid to anchor major layout decisions — don't freehand column widths
+- Components consume the grid via a container wrapper, not by setting their own margin
+- Layouts that span columns should reference the column count (e.g., "spans 6 of 16") rather than fixed pixel widths.
+
+---
