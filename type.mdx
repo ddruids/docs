@@ -1,0 +1,69 @@
+---
+title: "Type"
+---
+
+## Primary Font
+
+**Bricolage Grotesque** is our primary typeface and anchors the product experience. It is clear, direct, and approachable.
+
+## Secondary Font
+
+**Aeonik Fono** is dedicated to numbers, balances, prices, and performance metrics. Its structure ensures consistent character width, making data easier to compare at a glance.
+
+## Font families
+
+| Token | Value | Usage |
+| :-- | :-- | :-- |
+| `font/family/base` | Bricolage Grotesque | All UI copy — headings, body, buttons, links |
+| `font/family/display` | Bricolage Grotesque | Same face as base; used at display sizes |
+| `font/family/mono` | Aeonik Fono | Numeric display (prices, amounts, balances, addresses) |
+
+### Typescale
+
+### Heading
+
+| Token | Font | Weight | Size | Line height | Letter spacing |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+| `Heading - 01` | Bricolage Grotesque | Bold | 42 | 125% | 0 |
+| `Heading - 02` | Bricolage Grotesque | SemiBold | 35 | 125% | 0 |
+| `Heading - 03` | Bricolage Grotesque | SemiBold | 29 | 125% | 0 |
+| `Heading - 04` | Bricolage Grotesque | SemiBold | 24 | 125% | 0 |
+| `Heading - 05` | Bricolage Grotesque | Medium | 20 | 125% | 0 |
+| `Heading - 06` | Bricolage Grotesque | Medium | 16 | 125% | 0 |
+
+### Body
+
+| Token | Font | Weight | Size | Line height | Letter spacing |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+| `Body - 01` | Bricolage Grotesque | Regular | 16 | 130% | 0 |
+| `Body - 02` | Bricolage Grotesque | Regular | 14 | 130% | 2% |
+| `Body - 03` | Bricolage Grotesque | Regular | 12 | 130% | 2% |
+
+### Interactive
+
+Shared scale for buttons and links, both use the same visual treatment.
+
+| Token | Font | Weight | Size | Line height | Letter spacing | Used for |
+| :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| `Interactive - 01` | Bricolage Grotesque | SemiBold | 16 | default | 2% | Default buttons, body-copy links |
+| `Interactive - 02` | Bricolage Grotesque | SemiBold | 14 | default | 2% | Small/inline buttons and links |
+| `Interactive - 03` | Bricolage Grotesque | SemiBold | 12 | default | 2% | Dense UI, tertiary links, caption-sized actions |
+
+### Number
+
+| Token | Font | Weight | Size | Line height | Letter spacing |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+| `Number - 01` | Aeonik Fono | Medium | 32 | default | 0 |
+| `Number - 02` | Aeonik Fono | Medium | 24 | default | 0 |
+| `Number - 03` | Aeonik Fono | Medium | 20 | default | 0 |
+| `Number - 04` | Aeonik Fono | Medium | 16 | default | 0 |
+| `Number - 05` | Aeonik Fono | Medium | 14 | default | 0 |
+| `Number - 06` | Aeonik Fono | Medium | 12 | default | 0 |
+
+## Rules
+
+- Use predefined text styles only, no raw sizes/weights in components
+- Headings and display numbers use tight tracking (0); smaller text opens up to 2% for legibility at size
+- Use `Number` styles for any monetary amount, balance, address, or quantity, never Body
+- Limit the number of text roles on a single screen
+- Don't override line height unless necessary

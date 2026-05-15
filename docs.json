@@ -47,6 +47,7 @@
           "group": "Tokens",
           "pages": [
             "colors-1",
+            "type",
             "quickstart"
           ]
         },
