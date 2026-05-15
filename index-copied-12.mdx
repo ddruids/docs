@@ -1,0 +1,21 @@
+---
+description: "Transparency scale."
+mode: "wide"
+title: "Opacity"
+---
+
+## Tokens
+
+| Token | Value | Use |
+| :-- | :-- | :-- |
+| `opacity-0` | 0 | Hidden state, pre-animation starting values |
+| `opacity-25` | 0.25 | Strongly muted elements, deep disabled states |
+| `opacity-50` | 0.5 | Standard disabled state for interactive elements |
+| `opacity-75` | 0.75 | Subtly muted — secondary content, hover overlays |
+| `opacity-100` | 1 | Full visibility (default) |
+
+## Rules
+
+- Never rely on opacity alone to communicate state, always pair with a semantic change (color, position, or explicit `disabled` attribute)
+- Use `opacity-50` for disabled states; `opacity-25` is reserved for deeper muting, where disabled isn't the right semantic
+- Don't layer multiple opacities on nested elements, compound transparency rarely reads the way you expect
