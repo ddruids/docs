@@ -1,0 +1,85 @@
+---
+title: "Motion Philosophy"
+description: "Bungee's motion draws the eye and creates rhythm, guiding user attention through bounce-and-stretch animations, compositions, and key messages."
+mode: "wide"
+---
+
+Motion is core to the brand's promise of frictionless movement; every transition should feel like value flowing naturally from one state to the next, never as an ornament.\
+For the raw duration and easing tokens, see [**tokens/motion**](@page:b641eecf-4ddb-412f-a760-a67ef3dd3fd7)
+
+## Philosophy
+
+**Motion has meaning.** Every animation answers a question:
+
+- "What just happened?" (state change)
+- "Where did that come from?" (origin)
+- "Where am I in this flow?" (orientation)
+- "Did my action register?" (feedback)
+
+If an animation doesn't answer one of those, cut it.
+
+1. **Motion respects intent:** User-triggered motion uses an ease-out for the entrance (snappy at the start, gentle at the end), and System-triggered motion uses ease-in-out (smooth on both sides) since the user didn't initiate it
+2. **Motion respects size:** Small elements move quickly; large elements move deliberately. A 24px icon hover should be ~75ms; a full-screen modal should be ~400ms.
+3. **Motion respects accessibility:** When `prefers-reduced-motion: reduce` is on, non-essential animations drop to instant transitions or fades. Critical state changes (a modal opening) still happen; they just don't slide.
+
+---
+
+## Token families
+
+### Duration
+
+Six steps from instant to deliberate. See [**tokens/motion**](@page:b641eecf-4ddb-412f-a760-a67ef3dd3fd7) for the full table.
+
+| Token | Value | Common use |
+| :-- | :-- | :-- |
+| `duration-none` | 0ms | Opacity swaps, binary toggles |
+| `duration-xshort` | 75ms | Icon hovers, microinteractions |
+| `duration-short` | 150ms | Taps, toggles |
+| `duration-normal` | 250ms | Tooltips, toasts, and standard reveals |
+| `duration-slow` | 400ms | Larger elements, full-screen transitions |
+| `duration-xslow` | 600ms | Modals, page shifts |
+
+### Easing
+
+Penner-style cubic-bezier curves grouped into four families: linear, ease-in, ease-out, ease-in-out. See [**tokens/motion**](@page:b641eecf-4ddb-412f-a760-a67ef3dd3fd7) for the full set.
+
+## Semantic guidelines
+
+### By trigger
+
+- **User-triggered**:  `ease-out` for entrance, `ease-in` for exit
+- **System-triggered**: `ease-in-out`
+
+### By property
+
+- **Position/rotation**: `ease-in` or `ease-out`
+- **Opacity/color**: `ease-none` (linear)
+- **Mechanical/robotic feel**:  `ease-none`
+
+### By size
+
+- **Small elements**: `duration-xshort` or `duration-short`
+- **Medium elements**: `duration-normal`
+- **Large elements**: `duration-slow` or `duration-xslow`
+
+### Sequencing
+
+- **Staggered**: List reveals, search results, balance grids
+- **Serial**: Alert chains, guidance flows
+
+## Motion states
+
+Standard states that components should support each other with an associated motion treatment.
+
+- **Hover**: Feedback and reveal. Patterns below: scale hover, spotlight hover, mouse-aware underline.
+- **Focus**: Emphasizes location and selection context for keyboard and non-pointer users.
+- **Active**: Confirms completion of an interaction. Patterns: ripple, mouse-aware fill, border swirl.
+- **Selected**: Indicates persistent selection. Patterns: left-to-right background fill, border swirl loop.
+
+## Rules
+
+- Every animated property uses a duration token and an easing token: Never hardcoded values
+- Motion clarifies state change, never distracts
+- Keep timing consistent across similar actions (all toasts use `duration-normal` \+ `ease-out-cubic`; all modal opens use `duration-slow` \+ `ease-in-out-quart`)
+- For `duration-none`, pair with `ease-none`: The curve is irrelevant at zero duration, but keeps the API consistent
+- Document new patterns here, not inline in component specs

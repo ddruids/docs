@@ -1,0 +1,140 @@
+---
+title: "Contribution"
+description: "How to propose, review, and ship changes to the design system. The goal is to keep the bar high without making contributions feel bureaucratic."
+mode: "wide"
+---
+
+## Before you propose anything
+
+Ask:
+
+1. **Does the change already exist?** Skim [**/tokens**](@page:e1dd459a-81c0-47aa-8d9d-c60111c323b2), [**/components**](@page:98c87a60-4bb2-11ec-8da3-557eed56e2dd), and [**/patterns**](@page:2f8ea4ab-3340-49f9-8e89-f7008745a530) for what you need.
+2. **Can existing tokens, components, or patterns solve this?** Often, a new variant beats a new component.
+3. **Is this a one-off screen, or a system-level need?** One-off screens don't need system changes.
+
+If you've cleared all three, you're ready to propose.
+
+## Proposal template
+
+> Open a proposal in your team's standard channel (Linear, GitHub issue, or a comment on the relevant Figma frame). Include:\
+> # Proposal: \[name\]\
+> \
+> ## Problem\
+> What's broken or missing? Where do you see it?\
+> \
+> ## Current behavior\
+> What does the system do today? (Include screenshots or links.)\
+> \
+> ## Proposed change\
+> What should change? Be specific — exact token names, component variants, or pattern names.\
+> \
+> ## Why this matters\
+> Tied to a brand value or principle. If you can't, the change probably isn't system-level.\
+> \
+> ## Alternatives considered\
+> What did you rule out, and why?\
+> \
+> ## Impact\
+> - Surfaces affected\
+> - Migration cost (if any)\
+> - Whether this is breaking
+
+## Roles in a proposal
+
+| Role | What they do |
+| :-- | :-- |
+| **Proposer** | Files the proposal, owns iterations |
+| **Reviewer(s)** | Engage with the proposal, check against principles |
+| **Design System Owner** | Approves or rejects |
+| **Implementer** | Lands the change in Figma & code (often the proposer) |
+
+## Designers
+
+### Adding a new token
+
+1. Please verify that the token meets the [**governance**](@page:b5483b8a-3b64-4677-9674-1980f34b5c72) bar (used in ≥ 3 contexts, no existing token solves it)
+2. Propose using the template above
+3. On approval, add the token in Figma with the agreed name
+4. Update the relevant doc in [**/tokens**](@page:e1dd459a-81c0-47aa-8d9d-c60111c323b2)
+5. Tag engineering to mirror it in code
+
+### Adding a new component
+
+1. Use existing tokens: Never propose a component that requires new tokens unless you've already proposed those separately
+2. Document the spec against the component template before any Figma component is built
+3. Cover all required states: default, hover, focus, active, disabled, plus loading/error/selected where they apply
+4. Pair with engineering early: design and code land together
+
+### Modifying an existing component
+
+- Adding a variant or size: minor change, propose lightly
+- Changing default behavior: breaking change, requires owner approval
+- Changing the API surface: breaking change, requires owner approval and migration plan
+
+## Engineers
+
+### Implementing a new token
+
+1. Add to `engineering/css-variables.md` and the actual stylesheet
+2. Add to `engineering/tailwind.md` and the actual config
+3. Confirm naming matches the Figma token exactly (or follows the documented mapping)
+4. Update `engineering/token-sync.md` drift list
+
+### Implementing a new component
+
+1. Read the component spec in `/components` before writing code: every state, accessibility note, and token mapping is canonical
+2. Build with token consumption only: no raw values
+3. Cover all states from the spec; missing states fail review
+4. Add the component to the relevant Tailwind utilities or component library
+
+### Reporting drift
+
+If you find Figma and code disagree:
+
+1. File a drift entry in `engineering/token-sync.md`
+2. Tag the design system owner: drift gets resolved during the next sync window
+3. Don't silently fix in code: fixing without sync just hides the drift somewhere else
+
+## Reviewers
+
+Every proposal and every PR that touches the design system gets reviewed against:
+
+- **Principles**: Does this respect them?
+- **Token usage**: Is the change consuming semantic tokens, or sneaking in raw values?
+- **Accessibility**: All required states present? WCAG AA met?
+- **Consistency**: Does this duplicate something? Conflict with existing patterns?
+- **Documentation:** Is the change documented before merge, not after?
+
+Reject changes that don't update documentation. The doc is the system; if the doc isn't current, the system isn't current.
+
+## Versioning
+
+Bungee uses semantic versioning for the design system:
+
+- **Major** (v2.0 → v3.0) — breaking changes, removed tokens, renamed components
+- **Minor** (v2.0 → v2.1) — new tokens, new components, new variants
+- **Patch** (v2.0.0 → v2.0.1) — bug fixes, documentation, drift resolution
+
+Every release lands an entry in `changelog.md`.
+
+## Working with AI
+
+AI agents can:
+
+- Generate first drafts of components or patterns against existing tokens
+- Review copy against `content-strategy.md`
+- Suggest token usages from existing values
+
+AI agents cannot:
+
+- Propose new tokens (humans propose; AI can implement)
+- Approve breaking changes
+- Decide vocabulary additions for the content matrix
+
+See `/ai` for the full workflow.
+
+---
+
+## When in doubt
+
+If something feels like it might need approval, it does. The cost of asking is small; the cost of a quietly diverging design system is high.

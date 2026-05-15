@@ -1,0 +1,131 @@
+---
+title: "Content Strategy"
+description: "Bungee's UX writing framework is built on Material's Communication guidance, adapted for crypto UI and Bungee's brand voice."
+mode: "wide"
+---
+
+## An internal Claude skill instrument these rules so AI agents can review and generate copy against the same framework.
+
+## Principles
+
+- **Be concise, but not robotic:** Write short, scannable segments that focus on a limited number of ideas. Brevity is not terseness; warmth still matters.
+- **Write simply and directly:** Use simple, direct language. Every time you write something, ask whether there's an easier way to express the same idea.
+- **Address users clearly:** Use second person ("you", "your") for direct address. Use first person ("my") only when ownership needs to be emphasized ("My wallets", "My transactions"). Never mix first and second person in the same phrase.
+- **Communicate the essential details:** Show only what's needed for the current context. For crypto, this matters doubly: fees, slippage, and consequences must be explicit, but supplementary details belong behind progressive disclosure.
+- **Write for how people read.** Users scan in F-shaped patterns. Lead with the goal, front-load descriptive words, and keep paragraphs short.
+- **Match tone to context:** The tone shifts along the user journey; onboarding is different from an error, a confirmation is different from a destructive warning.
+
+## Voice
+
+Voice is consistent across the experience. Bungee's voice is **bold and clear**, structured to deliver value where financial and technical clarity matters.\
+Three voice attributes, tied to brand values:
+
+- **Direct**: We get to the point. Users come to Bungee to move value; copy shouldn't slow them down.
+- **Confident**: We lean into complexity and simplify the surface. We don't hedge or apologize for crypto's intricacies; we make them tractable.
+- **Human, not corporate**: The tone stays warm and approachable. Crypto can feel cold and technical; Bungee reads like a product built by people, for people.
+
+## Tone
+
+Tone is contextual and shifts with the user's state. The same voice can be supportive in an error, celebratory in a success, or neutral in a confirmation.
+
+### Tone map
+
+Bungee's tone adjusts along two axes: **concise ↔ detailed** and **neutral ↔ emotive**.
+
+| Context | Concise/detailed | Neutral/emotive | Notes |
+| :-- | :-- | :-- | :-- |
+| Onboarding | Detailed | Emotive | Explain why Bungee is different, and what the user gains. Warm welcome. |
+| Confirmation | Concise | Neutral | State the action and its outcome. No flourish. |
+| Destructive warnings | Detailed | Neutral | Full consequence disclosure. Factual, not alarming. |
+| Errors: User-fixable | Detailed | Neutral | Please state the issue and the next step. No blame. |
+| Errors: system failures | Concise | Emotive (supportive) | Acknowledge frustration is valid; provide a retry path. |
+| Success states | Concise | Emotive (lightly) | "Swap complete." A small celebration, not a parade. |
+| Labels and buttons | Concise | Neutral | Verb-first, no decoration. |
+| Empty states | Detailed | Emotive | Please explain what happened and what to do next, and keep it warm. |
+| Notifications | Concise | Neutral | Respect attention; deliver the update, move on. |
+
+## Word choice
+
+- **Verb-first buttons:** "Swap", "Connect wallet", "Confirm", "Review route". Never "Click here" or noun labels like "Swap button".
+- **Use numerals:** `0.5%` not "half a percent". `$1,240.50` not "one thousand two hundred forty dollars and fifty cents".
+- **Present tense:** "Your wallet **is** connected." Not "Your wallet has been connected."
+- **Consistent terminology:** Pick one word per concept and hold the line. If a token transfer is called a "swap" in one place, don't call it an "exchange" elsewhere.
+- **Minimize crypto jargon, but don't oversimplify.** Users who come to Bungee know what a wallet is; don't condescend. But features invented by the product (routing strategies, balance aggregation) need plain-language names.
+- **Refer to UI elements by their label.** If the button says "Review route", the in-copy reference is "Review route", not "the Review button" or "the review action".
+
+### Preferred/avoid
+
+| Prefer | Avoid | Reason |
+| :-- | :-- | :-- |
+| Swap | Exchange, convert, trade | Canonical verb for a token-for-token transfer |
+| Wallet | Account | Reserves "account" for off-chain contexts (email, login) |
+| Route | Path, option | Specific to routing across bridges |
+| Connect wallet | Sign in, log in | Wallets aren't accounts; connection is the right mental model |
+| Fees | Costs, charges | Consistent with industry convention |
+| Slippage | Price difference, variance | Domain-standard term users expect |
+| Confirm | OK, Yes | Action-oriented |
+| Something went wrong. Retry. | Error 500. | Human, actionable |
+
+## Content structure
+
+1. **Begin with the user's goal.** Because UI copy is task-oriented, front-load the objective.
+
+- ✅ "To swap tokens, connect your wallet."
+- ❌ "Please connect your wallet to proceed with the swap
+
+1. "**Progressive disclosure.** Reveal detail as the user needs it. Surface consequences that can't be undone (destructive actions, fees on no-refund chains) immediately; defer non-critical details.
+2. **Pair visible with non-visible text.** Icons, illustrations, and decorative images need `aria-label` or `alt` text that describes intent, not appearance. Purely decorative elements prevent screen readers don't announce them.
+
+## Writing for components
+
+| Component | Intent | Writing guidance |
+| :-- | :-- | :-- |
+| **Button** | Trigger an action | Verb-first, ≤ 3 words where possible. "Swap", "Connect wallet", "Review route". |
+| **Modal title** | Clarify purpose | Brief statement or question. "Confirm swap?" not "Are you sure you want to confirm this swap?" |
+| **Toast: Success** | Confirm completion | ≤ 5 words. "Swap complete." |
+| **Toast: Error** | Explain failure \+ next step | State issue, state action. "Transaction failed. Retry." |
+| **Input label** | Identify the field | Noun-based, sentence case. "Amount", "Destination wallet". |
+| **Helper text** | Guide without clutter | Only when the label alone isn't sufficient. |
+| **Error text** | Specific \+ actionable | "Amount exceeds balance. Reduce to continue." Never just "Invalid". |
+| **Empty state** | Explain \+ invite action | Two parts: what's happening, what the user can do. |
+| **Tooltip** | Surface detail on demand | One sentence, no period. Defines a term or explains a value. |
+| **Notification** | Update quietly | Past tense for completed events ("Swap complete"); present tense for ongoing state ("Swap in progress"). |
+
+---
+
+## Content matrix
+
+A content matrix is the spreadsheet that tracks every recurring phrase in the product; what we say for each pattern, and why. It's the single source of truth for vocabulary, so writers across teams land on the same words without negotiating each time.
+
+**Structure:**
+
+| Context | User goal | Information need | UI text | Component | Voice/tone notes |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+
+**Examples:**
+
+| Context | User goal | Information need | UI text | Component | Voice / tone notes |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+| Connect wallet — empty | Start swapping | Explain why a wallet is needed | "Connect a wallet to see balances and swap." | Empty state | Warm, explanatory |
+| Swap — confirmation | Approve the transaction | Show route, fee, slippage | "Swap 100 USDC for ~0.027 ETH. Fee: \$1.24." | Modal | Neutral, factual |
+| Swap — success | Confirm completion | Acknowledge, link to receipt | "Swap complete." \+ "View transaction" link | Toast | Concise, lightly emotive |
+| Insufficient balance | Fix the input | Explain what's wrong \+ how to fix | "Amount exceeds balance. Reduce to continue." | Input error | Neutral, specific |
+
+## Testing
+
+Real-world clarity and meaning are subjective. Before shipping user-facing copy at scale:
+
+- **Read it out loud:** Does it sound like something a person would actually say? If not, rewrite.
+- **Ask someone else to explain it back:** If their interpretation doesn't match your intent, the copy needs work.
+- **A/B test high-stakes flows:** Swap confirmations, error states, and destructive warnings benefit from data.
+- **Check comprehension across reading levels.** Use tools like the Hemingway Editor or Flesch-Kincaid score; aim for Grade 8 or below for consumer-facing surfaces.
+
+---
+
+## Working with AI on copy
+
+The AI workflow guidance  `/ai` covers using AI for copy review and generation. The short version:
+
+- AI can rewrite a draft against this framework
+- AI cannot decide whether a new term should join the canonical vocabulary — that's a content matrix update, which is governed by [**governance.md**](@page:b5483b8a-3b64-4677-9674-1980f34b5c72)
+- When prompting AI for copy, reference this doc explicitly: _"Per content-strategy.md, rewrite the following error to be specific and actionable…"_
