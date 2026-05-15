@@ -1,0 +1,35 @@
+---
+title: "Spacing"
+description: "T-shirt sizing scale follows a geometric progression, where each step doubles the previous one. This keeps spacing relationships consistent across the system and avoids the ambiguity of intermediate values like 20 or 24."
+mode: "wide"
+---
+
+## Tokens
+
+| Token | Value | Step |
+| :-- | :-- | :-- |
+| `Spacing - none` | 0 | — |
+| `Spacing - XXS` | 2 | base |
+| `Spacing - XS` | 4 | ×2 |
+| `Spacing - S` | 8 | ×2 |
+| `Spacing - M` | 16 | ×2 |
+| `Spacing - L` | 32 | ×2 |
+| `Spacing - XL` | 64 | ×2 |
+| `Spacing - XXL` | 128 | ×2 |
+| `Spacing - XXXL` | 256 | ×2 |
+
+## Rules
+
+- Use for padding, margin, and gap - Never custom values
+- `XXS` / `XS` / `S` for intra-component rhythm (Label- input, icon - text)
+- `M` / `L` for component-to-component spacing
+- `XL+` for section breaks and layout-level structure
+- If a value in between two steps feels right, use the nearer token and adjust surrounding spacing to match, don't introduce `20` or `24`
+
+## Why a geometric progression
+
+Doubling each step has three benefits:
+
+1. **Predictability**: Designers and engineers can reason about spacing without having to look it up. If something feels too tight at `S`, the next step is always `M`.
+2. **Visual Rhythm**: The scale matches the way perception responds to size differences (Weber's law). A 2px - 4px change is roughly as noticeable as 16px - 32px.
+3. **Scalability**: Adding intermediate values like `20` or `24` would compromise this property and invite further subdivision, eroding the system's discipline over time.

@@ -1,0 +1,98 @@
+---
+title: "Iconography"
+description: "The system uses Material Symbols Rounded, Google's variable icon font, referenced by ligature name rather than imported as SVG.
+"
+mode: "wide"
+---
+
+## Icon library
+
+- **Family:** Material Symbols Rounded
+- **Style:** Rounded (consistent with the softer UI aesthetic)
+- **Source:** [fonts.google.com/icons](https://fonts.google.com/icons)
+- **Fallback:** `sans-serif`
+
+Ligature names (e.g. `swap_horiz`, `account_balance_wallet`, `content_copy`) is the canonical icon identifier. Components reference icons by name; do not wrap them in abstractions that lose the name.
+
+---
+
+## Variable axes
+
+Material Symbols exposes four variation axes. System defaults:
+
+| Axis | Default | Notes |
+| :-- | :-- | :-- |
+| `FILL` | 0 | Outlined |
+| `wght` | 400 | Medium stroke |
+| `GRAD` | 0 | Standard grade |
+| `opsz` | 24 | Matches default size |
+
+### When to override
+
+- `FILL 1` : Active/selected states, status indicators, filled badges. Do not use as a default.
+- `wght 300`: Lighter decorative icons
+- `wght 500–700`: Small sizes where 400-weight strokes get too thin
+- `GRAD -25` : Optical correction on dark surfaces (standard Material recommendation for dark-mode rendering)
+
+---
+
+## Sizes
+
+| Token | Size | Matching `opsz` | Use |
+| :-- | :-- | :-- | :-- |
+| `icon/size/xs` | 16 | 20 | Inline with `Body - 03` |
+| `icon/size/sm` | 20 | 20 | Inline with `Body - 02`, small buttons |
+| `icon/size/md` | 24 | 24 | Default: Standalone icons, button leading icons |
+| `icon/size/lg` | 32 | 40 | Feature icons in cards, empty states |
+| `icon/size/xl` | 48 | 48 | Hero icons, illustration-scale moments |
+
+Match `opsz` to render size for optically correct glyphs. Material Symbols only supports `opsz` 20 / 24 / 40 / 48, snap to the nearest.
+
+---
+
+## Color
+
+Icons consume semantic color tokens, never raw palette values.
+
+| Token | Use |
+| :-- | :-- |
+| `Icon/Primary` (`Grey/100`) | Default icon color on dark surfaces |
+| `Icon/Secondary` (`Grey/200`) | Secondary, recessive icons (inactive tabs, metadata, chevrons) |
+| `Primary Text` | Icons paired with headings where they should match the text |
+| `Secondary Text` | Muted or secondary icons |
+| `Button Primary Text` | Icons inside Primary buttons |
+| `Border Error` / `Border Warning` | Status icons |
+| Accent pair fg (1–6) | Icons inside accent-treated toasts, badges, callouts |
+
+---
+
+## Base CSS
+
+```css
+.material-symbols-rounded {
+  font-family: "Material Symbols Rounded", sans-serif;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+```
+
+In the actual Bungee codebase, this class is scoped under `.bn-swap-wrap`. See `[engineering/css-variables.md](../engineering/css-variables.md)`.
+
+---
+
+## Rules
+
+- Use Material Symbols Rounded exclusively, don't mix icon libraries or import one-off SVGs
+- Icon stroke weight should match the surrounding text weight (`wght 400` next to Regular, `wght 500` next to SemiBold)
+- Filled variants (`FILL 1`) reserved for active/selected states
+- Reference icons by ligature name, not as wrapped components
