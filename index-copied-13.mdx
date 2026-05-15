@@ -1,0 +1,32 @@
+---
+description: "Corner radius scale.
+"
+mode: "wide"
+title: "Radius"
+---
+
+## Tokens
+
+| Token | Value |
+| :-- | :-- |
+| `Radius - 00` | 0 |
+| `Radius - 04` | 4 |
+| `Radius - 08` | 8 |
+| `Radius - 12` | 12 |
+| `Radius - 16` | 16 |
+| `Radius - full` | 9999 |
+
+## Usage
+
+- `Radius - 00` - Sharp corners; full-bleed surfaces, tables flush to container edges, dividers
+- `Radius - 04` - Small utility elements (chips, small inputs)
+- `Radius - 08` - Buttons, inputs, small cards
+- `Radius - 12` - Cards, panels
+- `Radius - 16` - Modals, prominent surfaces
+- `Radius - full` - Circular and pill shapes; avatars, status dots, pill buttons, toggles, protocol/chain icons
+
+## Rules
+
+- Use smaller radii for utility UI
+- Use larger radii for cards, modals, and expressive surfaces
+- Keep radius choices consistent across similar components
