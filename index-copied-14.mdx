@@ -1,0 +1,73 @@
+---
+description: "Reusable variables for animation duration and easing curves. For motion philosophy and composed patterns, see motion principle"
+mode: "wide"
+title: "Motion"
+---
+
+## Duration
+
+| Token | Value | Use |
+| :-- | :-- | :-- |
+| `duration-none` | 0ms | Instant changes with no visual transition, opacity swaps, binary toggles |
+| `duration-xshort` | 75ms | Fast, snappy feedback for microinteractions like icon hovers |
+| `duration-short` | 150ms | Quick transitions for taps, toggles, and low-friction interactions |
+| `duration-normal` | 250ms | Balanced motion for tooltips, toasts, and standard UI reveals |
+| `duration-slow` | 400ms | Larger elements or full-screen transitions; adds weight and clarity |
+| `duration-xslow` | 600ms | Deliberate pacing for major state changes; modals, page shifts |
+
+## Acceleration (easing)
+
+Easing curves control animation velocity. Grouped into four families by shape.
+
+### Linear
+
+| Token | Cubic bezier | Use |
+| :-- | :-- | :-- |
+| `ease-none` | `cubic-bezier(0, 0, 1, 1)` | Constant speed, robotic feel, Use for opacity and non-interactive loaders |
+
+### Ease-in (accelerate from rest)
+
+| Token | Cubic bezier | Use |
+| :-- | :-- | :-- |
+| `ease-in-quad` | `cubic-bezier(0.55, 0.085, 0.68, 0.53)` | Smooth acceleration for entrances, shake effects |
+| `ease-in-cubic` | `cubic-bezier(0.55, 0.055, 0.675, 0.19)` | Fast acceleration for sharp entries, dismissals |
+| `ease-in-quart` | `cubic-bezier(0.895, 0.03, 0.685, 0.22)` | Sharper ease-in for off-screen exits |
+| `ease-in-quint` | `cubic-bezier(0.755, 0.05, 0.855, 0.06)` | Extreme acceleration for deliberate and urgent |
+| `ease-in-expo` | `cubic-bezier(0.95, 0.05, 0.795, 0.035)` | Exponential ramp-up for  dramatic entrances |
+| `ease-in-circ` | `cubic-bezier(0.6, 0.04, 0.98, 0.335)` | Organic speed-up for arcs, curves |
+
+### Ease-out (decelerate to rest)
+
+| Token | Cubic bezier | Use |
+| :-- | :-- | :-- |
+| `ease-out-quad` | `cubic-bezier(0.25, 0.46, 0.45, 0.94)` | Gentle deceleration for hover, tap |
+| `ease-out-cubic` | `cubic-bezier(0.215, 0.61, 0.355, 1)` | Crisp ease-out for energy and clarity |
+| `ease-out-quart` | `cubic-bezier(0.165, 0.84, 0.44, 1)` | Snap finish for pop-outs, micro feedback |
+| `ease-out-quint` | `cubic-bezier(0.23, 1, 0.32, 1)` | High-impact ease-out for satisfying animation end |
+| `ease-out-expo` | `cubic-bezier(0.19, 1, 0.22, 1)` | Sudden release for component reveals |
+| `ease-out-circ` | `cubic-bezier(0.075, 0.82, 0.165, 1)` | Arc-style finish for subtle and smooth |
+
+### Ease-in-out (accelerate then decelerate)
+
+| Token | Cubic bezier | Use |
+| :-- | :-- | :-- |
+| `ease-in-out-quad` | `cubic-bezier(0.455, 0.03, 0.515, 0.955)` | Balanced entry/exit for morphs, position shifts |
+| `ease-in-out-cubic` | `cubic-bezier(0.645, 0.045, 0.355, 1)` | UI transforms, drawer transitions |
+| `ease-in-out-quart` | `cubic-bezier(0.77, 0, 0.175, 1)` | Weighted and smooth for modal transitions |
+| `ease-in-out-quint` | `cubic-bezier(0.86, 0, 0.07, 1)` | High-fidelity movement for intentional and elevated |
+| `ease-in-out-expo` | `cubic-bezier(1, 0, 0, 1)` | Maximum contrast ease for morphing large UI states |
+| `ease-in-out-circ` | `cubic-bezier(0.785, 0.135, 0.15, 0.86)` | Natural curved motion for circular or orbit-style |
+
+## Composing tokens
+
+Every motion uses a single duration and a single easing token. The pattern looks like:
+
+\
+`transition: opacity var(--duration-short) var(--ease-out-cubic);`
+
+\
+For the curated set of "blessed" combinations Bungee uses regularly, see `[motion.md](../motion.md)`. For the Tailwind `transitionDuration` and `transitionTimingFunction` keys, see `[engineering/tailwind.md](../engineering/tailwind.md)`.
+
+## Considerations
+
+**19 easings is a lot.** Most products only need 4–6 in regular use. Consider promoting a "blessed" set (e.g., `ease-out-cubic`, `ease-out-quart`, `ease-in-out-cubic`, `ease-in-out-quart`) and treating the rest as available-but-rare. This keeps engineering decisions small during implementation.
