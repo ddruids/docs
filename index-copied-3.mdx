@@ -1,0 +1,83 @@
+---
+title: "Principles"
+description: "Six principles that translate Bungee's brand values into design decisions. These are the questions we ask when reviewing work and the lens we use to resolve disagreements."
+mode: "wide"
+---
+
+## 1. Clarity first
+
+Interfaces should be easy to scan, understand, and act on. Decoration follows comprehension, never replaces it.\
+**In practice**
+
+- Lead with the user's goal, not with an explanation
+- Numbers are exact and labeled
+- Labels are unambiguous; if a button says "Confirm", it confirms; nothing else
+
+**Tied to brand value:** Precision and clarity
+
+## 2. Consistency over novelty
+
+Patterns repeat unless there is a strong reason to introduce a new one. A consistent system reduces cognitive load and lets users develop muscle memory.\
+**In practice**
+
+- Reuse existing components before proposing new ones
+- Reuse existing tokens before introducing new values
+- Treat exceptions as evidence that the system needs an update, not as one-offs
+
+**Tied to brand value:** Confidence in complexity
+
+## 3. System before screens
+
+Decisions are made at the token, component, and pattern level before solving one-off screens. A token decided once propagates everywhere; a screen decided once stays a screen.\
+**In practice**
+
+- When designing a screen, ask "Is this a new pattern, or a use of an existing one?"
+- When introducing a new color value, ask "Should this be a token?"
+- When you find yourself working around the system, file a change proposal rather than working around it
+
+**Tied to brand value:** Confidence in complexity
+
+## 4. Accessible by default
+
+Color, type, spacing, and interaction support readability and inclusive use. Accessibility is structural, not a polish step.\
+**In practice**
+
+- WCAG AA contrast minimums for all text and interactive UI
+- Full keyboard navigation
+- Visible focus states
+- Tap targets ≥ 44px on touch
+- Never rely on color alone to communicate a state
+
+**See:** `accessibility.md`\
+**Tied to brand value:** Precision and clarity
+
+## 5. Design & Code parity
+
+Anything defined in Figma maps cleanly to implementation. The cost of drift is silent — by the time you notice, half the product looks slightly off.\
+**In practice**
+
+- Every Figma token has a matching code token, named as closely as possible
+- Components consume semantic tokens, never raw values
+- Drift is documented and tracked (see `engineering/token-sync.md`)
+
+**Tied to brand value:** Precision and clarity
+
+## 6. Motion with meaning
+
+Every transition guides attention or clarifies state — never decoration for its own sake. Motion is at the core of Bungee's promise of frictionless movement.\
+**In practice**
+
+- Every animated property uses a duration token and an easing token — never hardcoded values
+- User-triggered motion uses ease-out for entrance, ease-in for exit
+- System-triggered motion uses ease-in-out
+- Match duration to element size — small elements get short durations, large elements get longer ones
+
+**See:** [**Motion**](@page:af56a49f-1180-4d3b-9afd-9a994dbcbe5f)\
+**Tied to brand value:** Frictionless movement, Playfulness with purpose
+
+---
+
+## Resolving conflicts between principles
+
+When two principles pull in opposite directions, the order above is the tiebreaker. Clarity beats consistency; consistency beats system purity; the system beats individual screens; accessibility is non-negotiable; design-code parity beats clever code; motion serves meaning.\
+If you can't resolve a conflict with this order, escalate to the design system owner rather than quietly splitting the difference.

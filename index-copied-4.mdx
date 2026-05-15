@@ -1,0 +1,127 @@
+---
+title: "Governance"
+description: "How decisions get made in this system: When to add tokens, when to add components, when to deprecate, and who has authority over what."
+mode: "wide"
+---
+
+## Roles
+
+| Role | Authority |
+| :-- | :-- |
+| **Design System Owner** | Final call on new tokens, breaking changes, and deprecation timelines |
+| **Designers** | Propose new patterns and components; consume existing tokens |
+| **Engineers** | Implement tokens and components; raise drift between Figma and code |
+| **Reviewers** | Check token usage, accessibility, and adherence to principles before merging |
+
+The owner role is concrete: a single named person at any given time. If that person is unclear, treat it as a blocker on any breaking change.
+
+---
+
+## When to add a new token
+
+Only when:
+
+- A reusable pattern is clearly needed across **≥ 3 contexts**
+
+- No existing token solves the problem
+- The addition improves consistency or scalability
+
+### Before adding, ask:
+
+1. Can an existing token solve this?
+2. Is this semantic, or just a one-off value?
+3. Does engineering need this as a reusable variable?
+4. Will this proliferate? (i.e., does adding `space-21` invite `space-23`, `space-25`?)
+
+If you can't answer "yes, no, yes, no" cleanly, don't add it.
+
+## When to add a new component
+
+Only when:
+
+- A reusable UI pattern appears in **≥ 3 unrelated contexts**
+- No existing component can solve the problem through a variant or size
+- The new component has a distinct semantic role (not just a style change)
+
+### Variant vs. new component
+
+- **New variant**: Same purpose, different visual treatment (e.g., a Ghost button)
+- **New component**: Distinct purpose (e.g., Switch vs. Checkbox)
+
+If you are unsure, please propose it as a variant first. Variants are easier to retire; components are not.
+
+## When to add a new pattern
+
+Patterns are compositions of components for a recurring user journey. Add one when:
+
+- The same flow appears in ≥ 3 places (e.g., empty states, transaction confirmations)
+- The composition encodes decisions that shouldn't have to be re-debated each time
+- It's a flow, not just a layout: Patterns describe sequencing and state, not just visual arrangement
+
+---
+
+## Proposing a change
+
+See the [**Contribution guide**](@page:afe7b25b-6846-4d9d-86b1-dad48e9436aa) for the full process. Quick version:
+
+1. Open a proposal in the design system project (Figma comment, GitHub issue, or Linear ticket)
+2. Describe the problem, current behavior, and proposed change
+3. Tag the design system owner
+4. Get explicit approval before implementing in production
+
+## Deprecation
+
+When a token, component, or pattern is being retired:
+
+1. **Mark deprecated** in Figma with a `[deprecated]` prefix and a comment naming the replacement
+2. **Mark deprecated in code** with a comment: `/* @deprecated — use X instead. Removing in v3.0. */`
+3. **Communicate** to engineering and design via the standard channel
+4. **Set a removal date** — typically one minor version (a few weeks)
+5. **Remove cleanly** — don't let deprecated tokens linger past the removal date
+
+## Breaking changes
+
+A change is "breaking" if it requires consumers to update their code or designs to remain functional. Examples:
+
+- Renaming a token
+- Removing a token
+- Changing a token's value beyond visual tolerance
+- Changing a component's required props or default behavior
+
+Breaking changes:
+
+- Require Design System Owner approval
+- Land in a major version bump (v2.0 → v3.0)
+- Are documented in [**changelog.md**](@page:39cf4a8b-9bf0-4821-a120-cd1a82a608af) with migration notes
+- Are announced before the merge, not after
+
+## Non-breaking changes
+
+These can land without ceremony, in any minor or patch version:
+
+- Adding a new token (no existing consumer affected)
+- Adding a new component variant
+- Bug fixes that bring the code closer to Figma
+- Documentation improvements
+
+---
+
+## Hard rules: Non-Negotiable
+
+- Use raw hex values in production UI
+- Create one-off spacing values
+- Duplicate token meanings
+- Ship a component without all required states defined
+- Hardcode values that should be tokenized
+
+---
+
+## Disagreements
+
+If two reviewers disagree on whether something meets the principles:
+
+1. Refer to [**principles**](@page:3ec46ab7-b91d-41d2-bcc3-378e6fabb17f), specifically the resolving-conflicts section
+2. If still unresolved, escalate to the Design System Owner
+3. Document the resolution either in the proposal or as an entry in [**changelog.md**](@page:39cf4a8b-9bf0-4821-a120-cd1a82a608af) , so the precedent is reusable
+
+Don't quietly split the difference. The point of the system is that decisions are visible.
