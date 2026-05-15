@@ -1,0 +1,77 @@
+---
+title: "Accessibility"
+description: "Bungee follows WCAG 2.1 Level AA. "
+mode: "wide"
+---
+
+## Color and contrast
+
+- Meet WCAG AA contrast minimums for all text and interactive UI
+  - 4.5:1 for normal text
+  - 3:1 for large text (≥ 18pt or ≥ 14pt bold)
+  - 3:1 for non-text UI (icons, focus rings, borders that convey state)
+- Never communicate state through color alone, pair with icon, text, or position
+- Run contrast checks on every token pairing in [**tokens/color.md**](@page:7cc8994f-e05f-487b-ad91-2d9fa912a16b), especially:
+  - `Button Primary Text` on `Button Primary` (Grey/700 on Yellow/400; marginal, verified)
+  - Accent fg on Accent bg pairs (especially in light mode)
+  - Link color on every surface it appears on
+- Test in both Mode 1 (Dark) and Mode 2 (Light)
+
+---
+
+## Keyboard navigation
+
+Everything interactive must be reachable and operable by keyboard.
+
+- All controls reachable via Tab in logical reading order
+- Modals, drawers, and bottom sheets trap focus inside while open
+- Focus returns to the trigger element when an overlay closes
+- Standard keys behave as expected:
+  - `Enter` / `Space` activate buttons
+  - `Esc` closes modals, drawers, bottom sheets, popovers
+  - Arrow keys navigate menus, tabs, radio groups, and sliders
+- No keyboard traps, if Tab can enter a region, it must be able to leave
+
+---
+
+## Touch targets
+
+- Minimum **44 × 44 px** for all interactive controls on touch surfaces
+- Where the visual is smaller (e.g., a 24px close icon), pad the hit area to 44px
+- Adjacent touch targets need at least 8px of separation to prevent mis-taps
+
+---
+
+## Screen readers
+
+- Every non-decorative image has descriptive `alt` text
+- Decorative imagery uses `aria-hidden="true"` so screen readers skip it
+- Icons inside buttons with text labels are `aria-hidden="true"` (the label already announces)
+- Standalone icons need `aria-label`
+- Form inputs always have an associated `<label>` (or `aria-label`)
+- Error text linked to inputs via `aria-describedby`
+- `aria-invalid="true"` on invalid inputs
+- Modals use `role="dialog"` and `aria-modal="true"`
+- Toasts use `role="status"` (non-critical) or `role="alert"` (errors)
+
+---
+
+## Motion
+
+- Respect `prefers-reduced-motion: reduce` — drop non-essential animations to instant transitions or fades
+- Never use motion as the sole communicator of state change
+- Avoid:
+  - Parallax effects that move opposite to the scroll direction
+  - Animations longer than 5 seconds
+  - More than 3 simultaneous flashes per second (seizure risk)
+
+When motion is reduced, transitions still happen, but they just use `duration-none` or fades instead of slides/scales.
+
+---
+
+## Content
+
+- Reading level: aim for Grade 8 or below for consumer-facing surfaces
+- Plain language over jargon; see `content-strategy.md`
+- Specific over abstract — "Insufficient balance" beats "Error."
+- Action-oriented: labels and error recovery start with verbs
