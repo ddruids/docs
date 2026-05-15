@@ -116,3 +116,86 @@ Do **not** use raw palette values directly in UI; they exist only to build seman
   <Color.Item name="Grey-800" value="#1A1C1E" />
   <Color.Item name="Grey-900" value="#161718" />
 </Color>
+
+## Semantic Colors
+
+Every semantic token is an alias to a Core Colors value. Use these in UI, never the primitives.
+
+### \
+Surfaces
+
+| Token | Core Color | Hex Value |
+| :-- | :-- | :-- |
+| Background | Grey/800 | #1F2124 |
+| Layer 1 | Grey/900 | #161718 |
+| Layer 2 | Grey/700 | #1F2023 |
+| Layer 3 | Grey/600 | #26282B |
+
+### Text
+
+| Token | Core Color | Hex Value |
+| :-- | :-- | :-- |
+| Text/Primary | Grey/500 | #F9FAFB |
+| Text/Secondary | Grey/200 | #BEBFC0 |
+| Text/Link | Yellow/200 | #FFEA8B |
+
+### Button
+
+| Token | Core Color | Hex Value |
+| :-- | :-- | :-- |
+| Button/Primary/BG | Yellow/400 | #FFD219 |
+| Button/Primary/Hover | Yellow/300 | #BEBFC0 |
+| Button/Primary/Text | Grey/700 | #FFEA8B |
+| Button/Disabled/BG | Grey/700 | #1F2023 |
+| Button/Disabled/Hover | Grey/600 | #26282B |
+| Button/Disabled/Text | Text/Secondary |  |
+
+### Icon
+
+| Token | Core Color | Hex Value |
+| :-- | :-- | :-- |
+| Icon/Primary/Default | Grey/100 | #E8E9EA |
+| Icon/Primary/Hover | Grey/50 | #F9FAFB |
+| Icon/Primary/Disabled | Grey/400 | #4D4F52 |
+| Icon/Secondary/Default | Grey/200 | #BEBFC0 |
+| Icon/Secondary/Hover | Grey/100 | #E8E9EA |
+| Icon/Secondary/Disabled | Grey/400 | #4D4F52 |
+
+### Border
+
+| Token | Core Color | Hex Value |
+| :-- | :-- | :-- |
+| Border/Strong | Grey/500 | #373A3E |
+| Border/Subtle | Grey/600 | #26282B |
+| Border/Warning | Yellow/200 | #FFEA8B |
+| Border/Error | Orange/300 | #FF9875 |
+
+### Accent Pairs
+
+Each accent ships with a foreground and background pair intended to be used together, with a light palette set against a deep, saturated background.
+
+| Pair | Foreground | FG Hex Value | Background | BG Hex Value |
+| :-- | :-- | :-- | :-- | :-- |
+| Accent 1 (Yellow) | Yellow/200 | #FFEA8B | Yellow/900 | #272516 |
+| Accent 2 (Violet) | Violet/400 | #AE9FF9 | Violet/900 | #141424 |
+| Accent 3 (Green | Green/200 | #8AE8B6 | Green/900 | #14251D |
+| Accent 4 (Orange) | Orange/300 | #FF9875 | Orange/900 | #36211A |
+| Accent 5 (Pink) | Pink/300 | #FFA7C5 | Pink/900 | #241419 |
+| Accent 6 (Turquoise) | Turquoise/200 | #8AEEEA | Turquoise/900 | #002927 |
+
+### Naming Convention
+
+Adopt \`\[role\]/\[variant\]/\[state\]\` for all semantic tokens going forward:
+
+- \`button/primary/default\`\
+- \`button/primary/hover\`\
+- \`border/default\`\
+- \`border/focus\`\
+- \`text/primary\`\
+- \`accent/1/fg\`\
+- \`accent/1/bg\`\
+\
+Rules\
+- Use semantic tokens in UI, never raw palette values\
+- Reserve the raw palette for token creation only\
+- Meet WCG AA contrast minimums, see \`accessibility.md\`
