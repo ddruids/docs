@@ -1,6 +1,6 @@
 {
     "$schema": "https://mintlify.com/docs.json",
-    "theme": "mint",
+    "theme": "sequoia",
     "name": "Mint Starter Kit",
     "colors": {
       "primary": "#000000",
@@ -94,5 +94,8 @@
     "appearance": {
       "strict": false,
       "default": "light"
+    },
+    "background": {
+      "decoration": "grid"
     }
   }
